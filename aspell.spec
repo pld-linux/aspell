@@ -57,7 +57,6 @@ Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
-Epoch:		%{serial}
 Requires:	%{name}-devel = %{version}
 
 %description static
