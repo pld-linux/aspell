@@ -1,21 +1,15 @@
-%define	name	aspell
-%define	version	.27.2
-%define	release	2
-%define	serial	1
-
 Summary:	Aspell is an Open Source spell checker.
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
-Serial:		%{serial}
+Name:		aspell
+Version:	.27.2
+Release:	3
+Serial:		1
 Copyright:	LGPL
 Group:		Utilities/Text
+Group(pl):	Narzêdzia/Tekst
 URL:		http://metalab.unc.edu/kevina/aspell
 Vendor:		Kevin Atkinson <kevinatk@home.com>
 Source:		%{name}-%{version}.tar.gz
-Distribution:	Freshmeat RPMs
-Packager:	Ryan Weaver <ryanw@infohwy.com>
-BuildRoot:	/tmp/%{name}-%{version}
+BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
  Aspell is an Open Source spell checker designed to eventually replace
@@ -27,13 +21,28 @@ BuildRoot:	/tmp/%{name}-%{version}
  powerful C++ library with C and Perl interfaces in the works.
 
 %package	devel
-Summary:	Static Libraries and header files for aspell
+Summary:	Libraries and header files for aspell development
 Group:		Development/Libraries
+Group(pl):	Programowanie/Biblioteki
 Serial:		%{serial}
+Requires:	%{name} = %{version}
+
 %description	devel
  Aspell is an Open Source spell checker.
 
- Static Libraries and header files for aspell
+ Libraries and header files for aspell development
+
+%package	static
+Summary:	Static Libraries for aspell development
+Group:		Development/Libraries
+Group(pl):	Programowanie/Biblioteki
+Serial:		%{serial}
+Requires:	%{name}-devel = %{version}
+
+%description	static
+ Aspell is an Open Source spell checker.
+
+ Static Libraries for aspell development
 
 %prep
 %setup -q
@@ -41,43 +50,50 @@ Serial:		%{serial}
 cp -p /usr/include/g++/stl_rope.h .
 patch <misc/stl_rope-30.diff
 
-./configure --prefix=/usr --enable-static
-
 %build
+%configure --enable-static
 make
 
 %install
-if [ -e $RPM_BUILD_ROOT ]; then rm -rf $RPM_BUILD_ROOT; fi
-mkdir -p $RPM_BUILD_ROOT
+rm -rf $RPM_BUILD_ROOT
+install -p $RPM_BUILD_ROOT
+
 make DESTDIR=$RPM_BUILD_ROOT install-strip
 
 cp -pr $RPM_BUILD_ROOT/usr/doc/aspell .
 
-%post
-/sbin/ldconfig
+%post -p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%defattr(-,root,root)
+%defattr(644,root,root,755)
 %doc README TODO aspell/*
-/usr/bin/aspell
-/usr/bin/run-with-aspell
+%attr(755,root,root) /usr/bin/aspell
+%attr(755,root,root) /usr/bin/run-with-aspell
 /usr/lib/aspell
-/usr/lib/libaspell.so.*
+/usr/lib/libaspell.so.*.*
 
-%files		devel
-%defattr(-,root,root)
+%files	devel
+%defattr(644,root,root,755)
+%attr(755,root,root) /usr/lib/libaspell.so
 /usr/include/aspell
-/usr/lib/libaspell.a
 /usr/lib/libaspell.la
-/usr/lib/libaspell.so
+
+%files static
+%defattr(644,root,root,755)
+/usr/lib/libaspell.a
 
 %changelog
+* Fri Apr 30 1999 Artur Frysiak <wiget@pld.org.pl>
+  [.27.2-3]
+- added static subpackage
+- full %%attr description
+- partial pl translation
+
 * Tue Mar  2 1999 Ryan Weaver <ryanw@infohwy.com>
   [aspell-.27.2-2]
 - Changes from .27.1 to .27.2 (Mar 1, 1999)
