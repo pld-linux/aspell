@@ -74,9 +74,9 @@ make install \
 #cp -pr $RPM_BUILD_ROOT/usr/doc/aspell .
 
 strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
-strip $RPM_BUILD_ROOT/usr/bin/* || :
+strip $RPM_BUILD_ROOT%{_bindir}/* || :
 
-ln -sf aspell $RPM_BUILD_ROOT/usr/bin/ispell
+ln -sf aspell $RPM_BUILD_ROOT%{_bindir}/ispell
 rm -rf $RPM_BUILD_ROOT/usr/{bin/run-with-aspell,share/aspell/ispell}
 
 gzip -9nf manual/manual2.lyx manual/man-text/*.txt
@@ -90,7 +90,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README TODO manual/{*,man-text/*.txt}.gz
-%attr(755,root,root) /usr/bin/*
+%attr(755,root,root) %{_bindir}/*
 %{_datadir}/aspell
 %{_libdir}/libaspell.so.*.*
 
@@ -112,7 +112,7 @@ rm -rf $RPM_BUILD_ROOT
 - added stripping shared libraries,
 - "manke install" with using $DESTDIR,
 - added using $RPM_OPT_FLAGS in CXXFLAGS on compile time,
-- added /usr/bin/ispell symplink to aspell,
+- added %{_bindir}/ispell symplink to aspell,
 - added gzipping %doc,
 - added Provides and Obsoletes ispell (asspel is full replacement ispell but
   much faster and beter).
