@@ -4,8 +4,8 @@ Summary:	Aspell is an Open Source spell checker
 Summary(pl):	Aspell jest kontrolerem pisowni
 Name:		aspell
 Version:	0%{ver}
-Release:	2
-Epoch:		1
+Release:	10
+Epoch:		2
 License:	LGPL
 Group:		Applications/Text
 Vendor:		Kevin Atkinson <kevinatk@home.com>
@@ -20,8 +20,9 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	pspell-devel
 Provides:	ispell
-Obsoletes:	ispell
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+Obsoletes:	ispell
+Obsoletes:	libaspell10
 
 %description
 Aspell is an Open Source spell checker designed to eventually replace
@@ -43,6 +44,7 @@ Summary:	Header files for aspell development
 Summary(pl):	Pliki nag³ówkowe dla programistów u¿ywaj±cych aspella
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
+Obsoletes:	libaspell10-devel
 
 %description devel
 Aspell is an Open Source spell checker. This package contains header
