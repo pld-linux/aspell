@@ -4,7 +4,7 @@ Summary:	Aspell is an Open Source spell checker
 Summary(pl):	Aspell jest kontrolerem pisowni
 Name:		aspell
 Version:	0%{ver}
-Release:	11
+Release:	12
 Epoch:		2
 License:	LGPL
 Group:		Applications/Text
@@ -19,9 +19,7 @@ BuildRequires:	automake
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	pspell-devel
-Provides:	ispell
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-Obsoletes:	ispell
 Obsoletes:	libaspell10
 
 %description
@@ -68,6 +66,18 @@ aspell libraries.
 Aspell jest kontrolerem pisowni. Pakiet ten zawiera biblioteki
 statyczne aspella.
 
+%package en
+Summary:	English dictionary for aspell
+Summary(pl):	Angielski s³ownik dla aspella
+Group:		Applications/Text
+Requires:	%{name} = %{version}
+
+%description en
+English dictionary (i.e. word list) for aspell.
+
+%description en -l pl
+Angielski s³ownik (lista s³ów) dla aspella.
+
 %prep
 %setup -q -n %{name}-%{ver}
 %patch0 -p0
@@ -75,7 +85,7 @@ statyczne aspella.
 %patch2 -p1
 
 %build
-libtoolize --copy --force
+%{__libtoolize}
 aclocal
 %{__autoconf}
 %{__automake}
@@ -91,10 +101,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-ln -sf aspell $RPM_BUILD_ROOT%{_bindir}/ispell
-rm -rf $RPM_BUILD_ROOT%{_prefix}/{bin/run-with-aspell,share/aspell/ispell}
-
-gzip -9nf manual/manual2.lyx manual/man-text/*.txt
+rm -f $RPM_BUILD_ROOT{%{_bindir}/run-with-aspell,%{_datadir}/aspell/ispell}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -104,16 +111,16 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc manual/{*,man-text/*.txt}.gz
+%doc manual/manual2.lyx manual/man-text/*.txt
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/libaspell.so.*.*
 %attr(755,root,root) %{_libdir}/libpspell_aspell.so.*.*
 %attr(755,root,root) %{_libdir}/libpspell_aspell.la
-%{_libdir}/aspell
-%{_datadir}/aspell
-%{_datadir}/pspell/*
+%dir %{_libdir}/aspell
+%dir %{_datadir}/aspell
+%{_datadir}/aspell/[^e]*
 
-%files	devel
+%files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libaspell.so
 %attr(755,root,root) %{_libdir}/libaspell.la
@@ -122,3 +129,9 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libaspell.a
+
+%files en
+%defattr(644,root,root,755)
+%{_libdir}/aspell/*
+%{_datadir}/aspell/english*
+%{_datadir}/pspell/*
