@@ -4,7 +4,7 @@ Summary:	Aspell is an Open Source spell checker
 Summary(pl):	Aspell jest kontrolerem pisowni
 Name:		aspell
 Version:	0%{ver}
-Release:	10
+Release:	11
 Epoch:		2
 License:	LGPL
 Group:		Applications/Text
@@ -81,8 +81,7 @@ autoconf
 automake -a -c -f --foreign
 %configure \
 	--enable-shared \
-	--enable-static \
-	--enable-dict-dir=%{_datadir}/aspell
+	--enable-static
 
 %{__make} 
 
@@ -110,6 +109,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libaspell.so.*.*
 %attr(755,root,root) %{_libdir}/libpspell_aspell.so.*.*
 %attr(755,root,root) %{_libdir}/libpspell_aspell.la
+%{_libdir}/aspell
 %{_datadir}/aspell
 %{_datadir}/pspell/*
 
