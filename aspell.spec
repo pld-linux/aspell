@@ -1,20 +1,18 @@
 Summary:	GNU Aspell is an Open Source spell checker
 Summary(pl):	GNU Aspell jest kontrolerem pisowni
 Name:		aspell
-Version:	0.50.2
-Release:	3
+Version:	0.50.3
+Release:	1
 Epoch:		2
 License:	LGPL
 Group:		Applications/Text
 Vendor:		Kevin Atkinson <kevina@gnu.org>
 Source0:	ftp://ftp.gnu.org/gnu/aspell/%{name}-%{version}.tar.gz
-Patch0:		%{name}-libtool.patch
 URL:		http://aspell.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libstdc++-devel
-BuildRequires:	libtool
-BuildConflicts:	aspell-devel < 0.50
+BuildRequires:	libtool >= 2:1.4e-0.20021218.3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libaspell10
 Obsoletes:	pspell
@@ -72,13 +70,12 @@ statyczne aspella.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
-#%{__libtoolize}
-#%{__aclocal}
-#%{__autoconf}
-#%{__automake}
+%{__libtoolize}
+%{__aclocal}
+%{__autoconf}
+%{__automake}
 %configure \
 	--enable-shared \
 	--enable-static
@@ -106,8 +103,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc README manual/man-html/*.{html,png,css}
 %attr(755,root,root) %{_bindir}/a*
 %attr(755,root,root) %{_bindir}/w*
-%attr(755,root,root) %{_libdir}/lib*.so.*
-%attr(755,root,root) %{_libdir}/lib*-common-*.so
+%attr(755,root,root) %{_libdir}/lib*.so.*.*
 %{_datadir}/aspell
 %dir %{_libdir}/aspell
 
@@ -116,7 +112,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc manual/dev-html/*.{html,png,css}
 %attr(755,root,root) %{_bindir}/p*
 %attr(755,root,root) %{_libdir}/lib*.so
-%exclude %{_libdir}/lib*-common-*.so
 %{_libdir}/lib*.la
 %{_includedir}/pspell
 %{_includedir}/*.h
