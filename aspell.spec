@@ -9,6 +9,7 @@ License:	LGPL
 Group:		Applications/Text
 Vendor:		Kevin Atkinson <kevina@gnu.org>
 Source0:	ftp://ftp.gnu.org/gnu/aspell/%{name}-%{version}.tar.gz
+# Source0-md5: a3bf0d46303ffb0beab8121bbc3311a3
 URL:		http://aspell.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
