@@ -4,7 +4,7 @@ Summary(pt_BR):	Verificador ortográfico
 Name:		aspell
 Version:	0.60
 Release:	3
-Epoch:		2
+Epoch:		3
 License:	LGPL
 Group:		Applications/Text
 Vendor:		Kevin Atkinson <kevina@gnu.org>
