@@ -10,17 +10,17 @@ diff -urN aspell-0.50.2.orig/ltmain.sh aspell-0.50.2/ltmain.sh
      avoid_version=no
      dlfiles=
 @@ -902,6 +903,11 @@
- 	    prev=
- 	    continue
- 	    ;;
-+	  inst_prefix)
-+	    inst_prefix_dir="$arg"
-+	    prev=
-+	    continue
-+	    ;;
- 	  self)
- 	    if test "$prev" = dlprefiles; then
- 	      dlself=yes
+ 	  prev=
+ 	  continue
+ 	  ;;
++	inst_prefix)
++	  inst_prefix_dir="$arg"
++	  prev=
++	  continue
++	  ;;
+ 	release)
+ 	  release="-$arg"
+ 	  prev=
 @@ -1146,6 +1152,10 @@
  	fi
  	continue
