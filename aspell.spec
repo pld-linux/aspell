@@ -1,3 +1,5 @@
+# TODO:
+# - SECURITY: http://securitytracker.com/alerts/2004/Jun/1010435.html
 Summary:	GNU Aspell is an Open Source spell checker
 Summary(pl):	GNU Aspell jest kontrolerem pisowni
 Summary(pt_BR):	Verificador ortográfico
