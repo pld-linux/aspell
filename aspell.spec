@@ -55,7 +55,6 @@ Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	libstdc++-devel
 Provides:	pspell-devel = %{epoch}:%{version}-%{release}
-Requires:	libstdc++-devel
 Obsoletes:	libaspell15-devel
 Obsoletes:	pspell-devel
 
