@@ -2,16 +2,14 @@ Summary:	GNU Aspell is an Open Source spell checker
 Summary(pl):	GNU Aspell jest kontrolerem pisowni
 Summary(pt_BR):	Verificador ortográfico
 Name:		aspell
-Version:	0.60.1.1
+Version:	0.60.2
 Release:	1
 Epoch:		3
 License:	LGPL
-Group:		Applications/Text
 Vendor:		Kevin Atkinson <kevina@gnu.org>
+Group:		Applications/Text
 Source0:	ftp://ftp.gnu.org/gnu/aspell/%{name}-%{version}.tar.gz
-# Source0-md5:	8c2f27dcfc5e02c994f11eed7d04b853
-# Security patch from gentoo: http://www.gentoo.org/cgi-bin/viewcvs.cgi/app-text/aspell/files/aspell-buffer-fix.patch
-# ref.: http://securitytracker.com/alerts/2004/Jun/1010435.html
+# Source0-md5:	d067596a1d9029d127d85e5040bab0ab
 Patch0:		%{name}-info.patch
 URL:		http://aspell.net/
 BuildRequires:	autoconf
