@@ -104,32 +104,4 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/libaspell.a
 
-%changelog
-* Mon May  3 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [.27.2-3]
-- added BuildPrereq rules,
-- moved aspell dictionaries to %{_datadir}/aspell,
-- added stripping shared libraries,
-- "manke install" with using $DESTDIR,
-- added using $RPM_OPT_FLAGS in CXXFLAGS on compile time,
-- added %{_bindir}/ispell symplink to aspell,
-- added gzipping %doc,
-- added Provides and Obsoletes ispell (asspel is full replacement ispell but
-  much faster and beter).
-
-* Fri Apr 30 1999 Artur Frysiak <wiget@pld.org.pl>
-- added static subpackage
-- full %%attr description
-- partial pl translation
-
-* Tue Mar  2 1999 Ryan Weaver <ryanw@infohwy.com>
-  [aspell-.27.2-2]
-- Changes from .27.1 to .27.2 (Mar 1, 1999)
-- Fixed a major bug that caused aspell to dump core when used
-  without any arguments
-- Fixed another major bug that caused aspell to do nothing when used
-  in interactive mode.
-- Added an option to exit in Aspell's interactive mode.
-- Removed some old documentation files from the distribution.
-- Minor changes on to the section on using Aspell with egcs.
-- Minor changes to remove -Wall warnings.
+%define date	%(LC_ALL="C" date +"%a %b %d %Y"`)
