@@ -1,13 +1,14 @@
 Summary:	GNU Aspell is an Open Source spell checker
 Summary(pl):	GNU Aspell jest kontrolerem pisowni
 Name:		aspell
-Version:	0.50.1
+Version:	0.50.2
 Release:	1
 Epoch:		2
 License:	LGPL
 Group:		Applications/Text
 Vendor:		Kevin Atkinson <kevina@gnu.org>
 Source0:	ftp://ftp.gnu.org/gnu/aspell/%{name}-%{version}.tar.gz
+Patch0:		%{name}-libtool.patch
 URL:		http://aspell.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -70,14 +71,13 @@ statyczne aspella.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
-# don't regenerate that stuff - cvs version of libtool is required for that
-# (1.4.2 is too old)
-#%%{__libtoolize}
-#%%{__aclocal}
-#%%{__autoconf}
-#%%{__automake}
+#%{__libtoolize}
+#%{__aclocal}
+#%{__autoconf}
+#%{__automake}
 %configure \
 	--enable-shared \
 	--enable-static
