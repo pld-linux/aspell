@@ -50,7 +50,7 @@ Static Libraries for aspell development
 %prep
 %setup -q
 
-cp -p /usr/include/g++/stl_rope.h .
+cp -p %{_includedir}/g++/stl_rope.h .
 patch <misc/stl_rope-30.diff
 
 %build
@@ -97,7 +97,7 @@ rm -rf $RPM_BUILD_ROOT
 %files	devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libaspell.so
-/usr/include/aspell
+%{_includedir}/aspell
 %{_libdir}/libaspell.la
 
 %files static
