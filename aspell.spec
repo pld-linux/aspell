@@ -1,7 +1,9 @@
+%define		ver	.33.7.1
+
 Summary:	Aspell is an Open Source spell checker
 Summary(pl):	Aspell jest kontrolerem pisowni
 Name:		aspell
-Version:	.33.7.1
+Version:	0%{ver}
 Release:	1
 Epoch:		1
 License:	LGPL
@@ -10,7 +12,7 @@ Group(de):	Applikationen/Text
 Group(fr):	Utilitaires/Texte
 Group(pl):	Aplikacje/Tekst
 Vendor:		Kevin Atkinson <kevinatk@home.com>
-Source0:	http://metalab.unc.edu/kevina/aspell/%{name}-%{version}.tar.gz
+Source0:	http://metalab.unc.edu/kevina/aspell/%{name}-%{ver}.tar.gz
 URL:		http://metalab.unc.edu/kevina/aspell/
 BuildRequires:	libstdc++-devel
 BuildRequires:	pspell-devel
@@ -70,7 +72,7 @@ Aspell jest kontrolerem pisowni. Pakiet ten zawiera biblioteki
 statyczne dla developerów aspella.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{ver}
 
 %build
 CFLAGS="%{rpmcflags}" CXXFLAGS="%{rpmcflags}" LDFLAGS="%{rpmldflags}" \
