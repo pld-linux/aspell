@@ -66,7 +66,7 @@ make
 %install
 rm -rf $RPM_BUILD_ROOT
 
-make install-strip \
+make install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	pkgdatadir=/usr/share/aspell \
 	libdir=/usr/lib
@@ -74,6 +74,7 @@ make install-strip \
 #cp -pr $RPM_BUILD_ROOT/usr/doc/aspell .
 
 strip --strip-unneeded $RPM_BUILD_ROOT/usr/lib/lib*.so.*.*
+strip $RPM_BUILD_ROOT/usr/bin/* || :
 
 ln -sf aspell $RPM_BUILD_ROOT/usr/bin/ispell
 rm -rf $RPM_BUILD_ROOT/usr/{bin/run-with-aspell,share/aspell/ispell}
