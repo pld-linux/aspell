@@ -1,4 +1,5 @@
 Summary:	Aspell is an Open Source spell checker.
+Summary(pl):	Aspell jest kontrolerem pisowni.
 Name:		aspell
 Version:	.27.2
 Release:	3
@@ -23,8 +24,14 @@ addition it has both compile time and run time support for other non English
 languages. Aspell also doubles as a powerful C++ library with C and Perl
 interfaces in the works.
 
+%description -l pl
+Aspell jest kontrolerem pisowni zaprojektowanym tak, by móc zast±piæ ispell'a.
+Dodatkowo zawiera wsparcie dla innych jêzyków ni¿ angielski. Interfejs
+aspella napisany zosta³ w C++, a interfejsy w Perlu i C s± aktualnie rozwijane.
+
 %package devel
 Summary:	Libraries and header files for aspell development
+Summary(pl):	Biblioteki i pliki nag³ówkowe dla developerów aspella
 Group:		Development/Libraries
 Group(pl):	Programowanie/Biblioteki
 Serial:		%{serial}
@@ -35,8 +42,13 @@ Aspell is an Open Source spell checker.
 
 Libraries and header files for aspell development
 
+%description -l pl devel
+Aspell jest kontrolerem pisowni.
+Pakiet ten zawiera biblioteki i pliki nag³ówkowe dla developerów aspella.
+
 %package static
 Summary:	Static Libraries for aspell development
+Summary(pl):	Biblioteki statyczne dla developerów aspella
 Group:		Development/Libraries
 Group(pl):	Programowanie/Biblioteki
 Serial:		%{serial}
@@ -46,6 +58,10 @@ Requires:	%{name}-devel = %{version}
 Aspell is an Open Source spell checker.
 
 Static Libraries for aspell development
+
+%description -l pl static
+Aspell jest kontrolerem pisowni.
+Pakiet ten zawiera biblioteki statyczne dla developerów aspella.
 
 %prep
 %setup -q
