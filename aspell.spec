@@ -56,7 +56,7 @@ patch <misc/stl_rope-30.diff
 %build
 CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
 CXXFLAGS="$RPM_OPT_FLAGS" \
-./configure \
+./configure %{_target} \
 	--prefix=/usr \
 	--libdir=/usr/share \
 	--enable-shared \
