@@ -1,0 +1,28 @@
+--- aspell-0.60/manual/aspell.texi.orig	2004-08-27 06:20:32.000000000 +0200
++++ aspell-0.60/manual/aspell.texi	2004-10-12 13:26:09.000000000 +0200
+@@ -20,9 +20,9 @@
+ @end quotation
+ @end copying
+ 
+-@dircategory GNU Packages
++@dircategory Miscellaneous:
+ @direntry
+-* Aspell: (aspell).        GNU Aspell spelling checker
++* Aspell: (aspell).			GNU Aspell spelling checker
+ @end direntry
+ 
+ @titlepage
+--- aspell-0.60/manual/aspell-dev.texi.orig	2004-06-21 03:48:46.000000000 +0200
++++ aspell-0.60/manual/aspell-dev.texi	2004-10-12 13:26:37.000000000 +0200
+@@ -26,9 +26,9 @@
+ @end quotation
+ @end copying
+ 
+-@dircategory GNU Packages
++@dircategory Libraries:
+ @direntry
+-* Aspell-dev: (aspell-dev).        For Aspell developers
++* Aspell-dev: (aspell-dev).		For Aspell developers
+ @end direntry
+ 
+ @titlepage
