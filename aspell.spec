@@ -87,6 +87,8 @@ statyczne aspella.
 %install
 rm -rf $RPM_BUILD_ROOT
 
+install -d $RPM_BUILD_ROOT%{_libdir}/aspell
+
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
@@ -106,6 +108,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/lib*.so.*
 %attr(755,root,root) %{_libdir}/lib*-common-*.so
 %{_datadir}/aspell
+%dir %{_libdir}/aspell
 
 %files devel
 %defattr(644,root,root,755)
