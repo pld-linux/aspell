@@ -69,11 +69,11 @@ rm -rf $RPM_BUILD_ROOT
 make install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	pkgdatadir=/usr/share/aspell \
-	libdir=/usr/lib
+	libdir=%{_libdir}
 
 #cp -pr $RPM_BUILD_ROOT/usr/doc/aspell .
 
-strip --strip-unneeded $RPM_BUILD_ROOT/usr/lib/lib*.so.*.*
+strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
 strip $RPM_BUILD_ROOT/usr/bin/* || :
 
 ln -sf aspell $RPM_BUILD_ROOT/usr/bin/ispell
@@ -92,17 +92,17 @@ rm -rf $RPM_BUILD_ROOT
 %doc README TODO manual/{*,man-text/*.txt}.gz
 %attr(755,root,root) /usr/bin/*
 /usr/share/aspell
-/usr/lib/libaspell.so.*.*
+%{_libdir}/libaspell.so.*.*
 
 %files	devel
 %defattr(644,root,root,755)
-%attr(755,root,root) /usr/lib/libaspell.so
+%attr(755,root,root) %{_libdir}/libaspell.so
 /usr/include/aspell
-/usr/lib/libaspell.la
+%{_libdir}/libaspell.la
 
 %files static
 %defattr(644,root,root,755)
-/usr/lib/libaspell.a
+%{_libdir}/libaspell.a
 
 %changelog
 * Mon May  3 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
