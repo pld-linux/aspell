@@ -13,7 +13,7 @@ URL:		http://metalab.unc.edu/kevina/aspell/
 BuildRequires:	libstdc++-devel
 Provides:	ispell
 Obsoletes:	ispell
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Aspell is an Open Source spell checker designed to eventually replace
