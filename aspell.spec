@@ -3,7 +3,7 @@ Summary(pl):	GNU Aspell jest kontrolerem pisowni
 Summary(pt_BR):	Verificador ortográfico
 Name:		aspell
 Version:	0.60
-Release:	1
+Release:	2
 Epoch:		2
 License:	LGPL
 Group:		Applications/Text
@@ -53,6 +53,7 @@ Summary(pl):	Pliki nag³ówkowe dla programistów u¿ywaj±cych aspella
 Summary(pt_BR):	Arquivos para desenvolvimento usando Aspell
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	libstdc++-devel
 Provides:	pspell-devel = %{epoch}:%{version}-%{release}
 Requires:	libstdc++-devel
 Obsoletes:	libaspell15-devel
