@@ -8,9 +8,6 @@ Release:	1
 Epoch:		1
 License:	LGPL
 Group:		Applications/Text
-Group(de):	Applikationen/Text
-Group(fr):	Utilitaires/Texte
-Group(pl):	Aplikacje/Tekst
 Vendor:		Kevin Atkinson <kevinatk@home.com>
 Source0:	http://metalab.unc.edu/kevina/aspell/%{name}-%{ver}.tar.gz
 URL:		http://metalab.unc.edu/kevina/aspell/
@@ -39,13 +36,6 @@ aktualnie rozwijane.
 Summary:	Libraries and header files for aspell development
 Summary(pl):	Biblioteki i pliki nagЁСwkowe dla developerСw aspella
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	Разработка/Библиотеки
-Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name} = %{version}
 
 %description devel
@@ -61,13 +51,6 @@ nagЁСwkowe dla developerСw aspella.
 Summary:	Static Libraries for aspell development
 Summary(pl):	Biblioteki statyczne dla developerСw aspella
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	Разработка/Библиотеки
-Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name}-devel = %{version}
 
 %description static
