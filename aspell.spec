@@ -117,7 +117,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/p*
 %attr(755,root,root) %{_libdir}/lib*.so
 %exclude %{_libdir}/lib*-common-*.so
-%attr(755,root,root) %{_libdir}/lib*.la
+%{_libdir}/lib*.la
 %{_includedir}/pspell
 %{_includedir}/*.h
 
