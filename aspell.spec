@@ -1,5 +1,6 @@
 Summary:	GNU Aspell is an Open Source spell checker
 Summary(pl):	GNU Aspell jest kontrolerem pisowni
+Summary(pt_BR):	Verificador ortográfico
 Name:		aspell
 Version:	0.50.3
 Release:	1.1
@@ -15,9 +16,9 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:1.4e-0.20021218.3
 BuildRequires:	gettext-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-Obsoletes:	libaspell10
-Obsoletes:	pspell
 Provides:	pspell = %{epoch}:%{version}-%{release}
+Obsoletes:	libaspell15
+Obsoletes:	pspell
 
 %description
 GNU Aspell is a Free and Open Source spell checker designed to
@@ -36,14 +37,21 @@ zast±piæ ispella. Dodatkowo zawiera wsparcie dla innych jêzyków ni¿
 angielski. Interfejs aspella napisany zosta³ w C++, a interfejsy w
 Perlu i C s± aktualnie rozwijane.
 
+%description -l pt_BR
+GNU Aspell é um verificador ortográfico criado para substituir o
+antigo "ispell". Sua principal vantagem (sobre o Ispell) é uma melhor
+sugestão de correções. Aspell inclui suporte a vários idiomas e pode
+fazer a checagem de arquivos LaTeX e HTML.
+
 %package devel
 Summary:	Header files for aspell development
 Summary(pl):	Pliki nag³ówkowe dla programistów u¿ywaj±cych aspella
+Summary(pt_BR):	Arquivos para desenvolvimento usando Aspell
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
-Obsoletes:	libaspell10-devel
-Obsoletes:	pspell-devel
 Provides:	pspell-devel = %{epoch}:%{version}-%{release}
+Obsoletes:	libaspell15-devel
+Obsoletes:	pspell-devel
 
 %description devel
 Aspell is an Open Source spell checker. This package contains header
@@ -53,9 +61,15 @@ files for aspell development.
 Aspell jest kontrolerem pisowni. Ten pakiet zawiera pliki nag³ówkowe
 dla programistów u¿ywaj±cych bibliotek aspella.
 
+%description devel -l pt_BR
+Aspell é um corretor ortográfico. O pacote -devel inclui bibliotecas
+dinâmicas e arquivos de inclusão necessários para o desenvolvimento
+utilizando o aspell.
+
 %package static
 Summary:	Static libraries for aspell development
 Summary(pl):	Biblioteki statyczne aspella
+Summary(pt_BR):	Bibliotecas estáticas para desenvolvimento usando Aspell
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}
 Obsoletes:	pspell-static
@@ -68,6 +82,11 @@ aspell libraries.
 %description static -l pl
 Aspell jest kontrolerem pisowni. Pakiet ten zawiera biblioteki
 statyczne aspella.
+
+%description static -l pt_BR
+Aspell é um corretor ortográfico. O pacote -devel-static inclui as
+bibliotecas estáticas necessárias para o desenvolvimento utilizando o
+aspell.
 
 %prep
 %setup -q
@@ -85,7 +104,6 @@ statyczne aspella.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 install -d $RPM_BUILD_ROOT%{_libdir}/aspell
 
 %{__make} install \
