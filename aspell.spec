@@ -133,7 +133,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/run-with-aspell
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %{_datadir}/aspell
-%dir %{_datadir}/aspell
 %dir %{_libdir}/aspell
 
 %files devel
