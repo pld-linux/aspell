@@ -1,13 +1,14 @@
-Summary:	Aspell is an Open Source spell checker.
-Summary(pl):	Aspell jest kontrolerem pisowni.
+Summary:	Aspell is an Open Source spell checker
+Summary(pl):	Aspell jest kontrolerem pisowni
 Name:		aspell
 Version:	.27.2
 Release:	3
-Serial:		1
+Epoch:		1
 License:	LGPL
-Group:		Utilities/Text
+Group:		Applications/Text
+Group(de):	Applikationen/Text
 Group(fr):	Utilitaires/Texte
-Group(pl):	Narzêdzia/Tekst
+Group(pl):	Aplikacje/Tekst
 Vendor:		Kevin Atkinson <kevinatk@home.com>
 Source0:	http://metalab.unc.edu/kevina/aspell/%{name}-%{version}.tar.gz
 URL:		http://metalab.unc.edu/kevina/aspell/
@@ -35,15 +36,16 @@ aktualnie rozwijane.
 Summary:	Libraries and header files for aspell development
 Summary(pl):	Biblioteki i pliki nag³ówkowe dla developerów aspella
 Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
-Serial:		%{serial}
+Epoch:		%{serial}
 Requires:	%{name} = %{version}
 
 %description devel
 Aspell is an Open Source spell checker.
 
-Libraries and header files for aspell development
+Libraries and header files for aspell development.
 
 %description -l pl devel
 Aspell jest kontrolerem pisowni. Pakiet ten zawiera biblioteki i pliki
@@ -53,15 +55,16 @@ nag³ówkowe dla developerów aspella.
 Summary:	Static Libraries for aspell development
 Summary(pl):	Biblioteki statyczne dla developerów aspella
 Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
-Serial:		%{serial}
+Epoch:		%{serial}
 Requires:	%{name}-devel = %{version}
 
 %description static
 Aspell is an Open Source spell checker.
 
-Static Libraries for aspell development
+Static Libraries for aspell development.
 
 %description -l pl static
 Aspell jest kontrolerem pisowni. Pakiet ten zawiera biblioteki
@@ -74,8 +77,7 @@ cp -p %{_includedir}/g++/stl_rope.h .
 patch <misc/stl_rope-30.diff
 
 %build
-CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
-CXXFLAGS="$RPM_OPT_FLAGS" \
+CFLAGS="%{rpmcflags}" CXXFLAGS="%{rpmcflags}" LDFLAGS="%{rpmldflags}" \
 ./configure %{_target_platform} \
 --prefix=%{_prefix} \
 	--libdir=%{_datadir} \
@@ -92,9 +94,6 @@ rm -rf $RPM_BUILD_ROOT
 	libdir=%{_libdir}
 
 #cp -pr $RPM_BUILD_ROOT%{_prefix}/doc/aspell .
-
-strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
-strip $RPM_BUILD_ROOT%{_bindir}/* || :
 
 ln -sf aspell $RPM_BUILD_ROOT%{_bindir}/ispell
 rm -rf $RPM_BUILD_ROOT%{_prefix}/{bin/run-with-aspell,share/aspell/ispell}
@@ -123,5 +122,3 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libaspell.a
-
-%define date	%(LC_ALL="C" date +"%a %b %d %Y"`)
