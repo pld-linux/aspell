@@ -9,6 +9,7 @@ Group(pl):	Narzêdzia/Tekst
 Vendor:		Kevin Atkinson <kevinatk@home.com>
 Source:		http://metalab.unc.edu/kevina/aspell/%{name}-%{version}.tar.gz
 URL:		http://metalab.unc.edu/kevina/aspell/
+BuildPrereq:	libstdc++-devel
 Provides:	ispell
 Obsoletes:	ispell
 BuildRoot:	/tmp/%{name}-%{version}-root
@@ -105,6 +106,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 * Mon May  3 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [.27.2-3]
+- added BuildPrereq rules,
 - moved aspell dictionaries to /usr/share/aspell,
 - added stripping shared libraries,
 - "manke install" with using $DESTDIR,
