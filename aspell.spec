@@ -8,7 +8,7 @@ Epoch:		2
 License:	LGPL
 Group:		Applications/Text
 Vendor:		Kevin Atkinson <kevina@gnu.org>
-Source0:	http://aspell.net/%{name}-%{version}.tar.gz
+Source0:	ftp://ftp.gnu.org/gnu/aspell/%{name}-%{version}.tar.gz
 # Source0-md5:	8fa031d0eb37a5538aa6fefa657e707f
 # Security patch from gentoo: http://www.gentoo.org/cgi-bin/viewcvs.cgi/app-text/aspell/files/aspell-buffer-fix.patch
 # ref.: http://securitytracker.com/alerts/2004/Jun/1010435.html
