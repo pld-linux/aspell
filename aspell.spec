@@ -9,7 +9,7 @@ Group(pl):	Narzêdzia/Tekst
 Vendor:		Kevin Atkinson <kevinatk@home.com>
 Source:		http://metalab.unc.edu/kevina/aspell/%{name}-%{version}.tar.gz
 URL:		http://metalab.unc.edu/kevina/aspell/
-BuildPrereq:	libstdc++-devel
+BuildRequires:	libstdc++-devel
 Provides:	ispell
 Obsoletes:	ispell
 BuildRoot:	/tmp/%{name}-%{version}-root
