@@ -2,25 +2,24 @@ Summary:	GNU Aspell is an Open Source spell checker
 Summary(pl):	GNU Aspell jest kontrolerem pisowni
 Summary(pt_BR):	Verificador ortográfico
 Name:		aspell
-Version:	0.50.3
-Release:	1.1
+Version:	0.50.4
+Release:	1
 Epoch:		2
 License:	LGPL
 Group:		Applications/Text
 Vendor:		Kevin Atkinson <kevina@gnu.org>
-Source0:	ftp://ftp.gnu.org/gnu/aspell/%{name}-%{version}.tar.gz
-# Source0-md5: a3bf0d46303ffb0beab8121bbc3311a3
-Patch0:		%{name}-assert.patch
+Source0:	ftp://ftp.gnu.org/gnu/%{name}/%{name}-%{version}.tar.gz
+# Source0-md5:	c36b669a9890eb2be390bfaf00dab9d0
 URL:		http://aspell.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	gettext-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:1.4e-0.20021218.3
-BuildRequires:	gettext-devel
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Provides:	pspell = %{epoch}:%{version}-%{release}
 Obsoletes:	libaspell15
 Obsoletes:	pspell
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 GNU Aspell is a Free and Open Source spell checker designed to
@@ -74,8 +73,8 @@ Summary(pl):	Biblioteki statyczne aspella
 Summary(pt_BR):	Bibliotecas estáticas para desenvolvimento usando Aspell
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}
-Obsoletes:	pspell-static
 Provides:	pspell-static = %{epoch}:%{version}-%{release}
+Obsoletes:	pspell-static
 
 %description static
 Aspell is an Open Source spell checker. This package contains static
@@ -92,7 +91,6 @@ aspell.
 
 %prep
 %setup -q
-%patch -p1
 
 %build
 %{__libtoolize}
