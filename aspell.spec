@@ -58,7 +58,7 @@ CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
 CXXFLAGS="$RPM_OPT_FLAGS" \
 ./configure %{_target} \
 	--prefix=/usr \
-	--libdir=/usr/share \
+	--libdir=%{_datadir} \
 	--enable-shared \
 	--enable-static
 make 
@@ -68,7 +68,7 @@ rm -rf $RPM_BUILD_ROOT
 
 make install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	pkgdatadir=/usr/share/aspell \
+	pkgdatadir=%{_datadir}/aspell \
 	libdir=%{_libdir}
 
 #cp -pr $RPM_BUILD_ROOT/usr/doc/aspell .
@@ -91,7 +91,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README TODO manual/{*,man-text/*.txt}.gz
 %attr(755,root,root) /usr/bin/*
-/usr/share/aspell
+%{_datadir}/aspell
 %{_libdir}/libaspell.so.*.*
 
 %files	devel
@@ -108,7 +108,7 @@ rm -rf $RPM_BUILD_ROOT
 * Mon May  3 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [.27.2-3]
 - added BuildPrereq rules,
-- moved aspell dictionaries to /usr/share/aspell,
+- moved aspell dictionaries to %{_datadir}/aspell,
 - added stripping shared libraries,
 - "manke install" with using $DESTDIR,
 - added using $RPM_OPT_FLAGS in CXXFLAGS on compile time,
