@@ -6,43 +6,45 @@ Serial:		1
 Copyright:	LGPL
 Group:		Utilities/Text
 Group(pl):	Narzêdzia/Tekst
-URL:		http://metalab.unc.edu/kevina/aspell
 Vendor:		Kevin Atkinson <kevinatk@home.com>
-Source:		%{name}-%{version}.tar.gz
+Source:		http://metalab.unc.edu/kevina/aspell/%{name}-%{version}.tar.gz
+URL:		http://metalab.unc.edu/kevina/aspell/
+Provides:	ispell
+Obsoletes:	ispell
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
- Aspell is an Open Source spell checker designed to eventually replace
- Ispell. Its main feature is that it does a much better job of coming
- up with possible suggestions than Ispell does. In fact recent tests
- shows that it even does better than Microsoft Word 97's spell checker
- in some cases. In addition it has both compile time and run time
- support for other non English languages. Aspell also doubles as a
- powerful C++ library with C and Perl interfaces in the works.
+Aspell is an Open Source spell checker designed to eventually replace
+Ispell. Its main feature is that it does a much better job of coming up with
+possible suggestions than Ispell does. In fact recent tests shows that it
+even does better than Microsoft Word 97's spell checker in some cases. In
+addition it has both compile time and run time support for other non English
+languages. Aspell also doubles as a powerful C++ library with C and Perl
+interfaces in the works.
 
-%package	devel
+%package devel
 Summary:	Libraries and header files for aspell development
 Group:		Development/Libraries
 Group(pl):	Programowanie/Biblioteki
 Serial:		%{serial}
 Requires:	%{name} = %{version}
 
-%description	devel
- Aspell is an Open Source spell checker.
+%description devel
+Aspell is an Open Source spell checker.
 
- Libraries and header files for aspell development
+Libraries and header files for aspell development
 
-%package	static
+%package static
 Summary:	Static Libraries for aspell development
 Group:		Development/Libraries
 Group(pl):	Programowanie/Biblioteki
 Serial:		%{serial}
 Requires:	%{name}-devel = %{version}
 
-%description	static
- Aspell is an Open Source spell checker.
+%description static
+Aspell is an Open Source spell checker.
 
- Static Libraries for aspell development
+Static Libraries for aspell development
 
 %prep
 %setup -q
@@ -51,19 +53,33 @@ cp -p /usr/include/g++/stl_rope.h .
 patch <misc/stl_rope-30.diff
 
 %build
-%configure --enable-static
-make
+CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
+CXXFLAGS="$RPM_OPT_FLAGS" \
+./configure \
+	--prefix=/usr \
+	--libdir=/usr/share \
+	--enable-shared \
+	--enable-static
+make 
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -p $RPM_BUILD_ROOT
 
-make DESTDIR=$RPM_BUILD_ROOT install-strip
+make install-strip \
+	DESTDIR=$RPM_BUILD_ROOT \
+	pkgdatadir=/usr/share/aspell \
+	libdir=/usr/lib
 
-cp -pr $RPM_BUILD_ROOT/usr/doc/aspell .
+#cp -pr $RPM_BUILD_ROOT/usr/doc/aspell .
 
-%post -p /sbin/ldconfig
+strip --strip-unneeded $RPM_BUILD_ROOT/usr/lib/lib*.so.*.*
 
+ln -sf aspell $RPM_BUILD_ROOT/usr/bin/ispell
+rm -rf $RPM_BUILD_ROOT/usr/{bin/run-with-aspell,share/aspell/ispell}
+
+gzip -9nf manual/manual2.lyx manual/man-text/*.txt
+
+%post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
 %clean
@@ -71,10 +87,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README TODO aspell/*
-%attr(755,root,root) /usr/bin/aspell
-%attr(755,root,root) /usr/bin/run-with-aspell
-/usr/lib/aspell
+%doc README TODO manual/{*,man-text/*.txt}.gz
+%attr(755,root,root) /usr/bin/*
+/usr/share/aspell
 /usr/lib/libaspell.so.*.*
 
 %files	devel
@@ -88,8 +103,18 @@ rm -rf $RPM_BUILD_ROOT
 /usr/lib/libaspell.a
 
 %changelog
-* Fri Apr 30 1999 Artur Frysiak <wiget@pld.org.pl>
+* Mon May  3 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [.27.2-3]
+- moved aspell dictionaries to /usr/share/aspell,
+- added stripping shared libraries,
+- "manke install" with using $DESTDIR,
+- added using $RPM_OPT_FLAGS in CXXFLAGS on compile time,
+- added /usr/bin/ispell symplink to aspell,
+- added gzipping %doc,
+- added Provides and Obsoletes ispell (asspel is full replacement ispell but
+  much faster and beter).
+
+* Fri Apr 30 1999 Artur Frysiak <wiget@pld.org.pl>
 - added static subpackage
 - full %%attr description
 - partial pl translation
