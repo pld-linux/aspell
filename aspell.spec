@@ -134,6 +134,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %{_datadir}/aspell
 %dir %{_datadir}/aspell
+%dir %{_libdir}/aspell
 
 %files devel
 %defattr(644,root,root,755)
