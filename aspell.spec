@@ -8,7 +8,6 @@ License:	LGPL
 Group:		Applications/Text
 Vendor:		Kevin Atkinson <kevina@gnu.org>
 Source0:	ftp://ftp.gnu.org/gnu/aspell/%{name}-%{version}.tar.gz
-Patch0:		%{name}-libstdc++.patch
 URL:		http://aspell.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -71,13 +70,14 @@ statyczne aspella.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
-%{__libtoolize}
-%{__aclocal}
-%{__autoconf}
-%{__automake}
+# don't regenerate that stuff - cvs version of libtool is required for that
+# (1.4.2 is too old)
+#%%{__libtoolize}
+#%%{__aclocal}
+#%%{__autoconf}
+#%%{__automake}
 %configure \
 	--enable-shared \
 	--enable-static
