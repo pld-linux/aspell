@@ -81,12 +81,12 @@ CXXFLAGS="$RPM_OPT_FLAGS" \
 	--libdir=%{_datadir} \
 	--enable-shared \
 	--enable-static
-make 
+%{__make} 
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-make install \
+%{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	pkgdatadir=%{_datadir}/aspell \
 	libdir=%{_libdir}
