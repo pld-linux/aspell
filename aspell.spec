@@ -50,7 +50,7 @@ Summary:	Header files for aspell development
 Summary(pl):	Pliki nag³ówkowe dla programistów u¿ywaj±cych aspella
 Summary(pt_BR):	Arquivos para desenvolvimento usando Aspell
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{epoch}:%{version}
 Provides:	pspell-devel = %{epoch}:%{version}-%{release}
 Obsoletes:	libaspell15-devel
 Obsoletes:	pspell-devel
@@ -73,7 +73,7 @@ Summary:	Static libraries for aspell development
 Summary(pl):	Biblioteki statyczne aspella
 Summary(pt_BR):	Bibliotecas estáticas para desenvolvimento usando Aspell
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{epoch}:%{version}
 Obsoletes:	pspell-static
 Provides:	pspell-static = %{epoch}:%{version}-%{release}
 
