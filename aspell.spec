@@ -106,13 +106,12 @@ aspell.
 	--enable-shared \
 	--enable-static \
 	--enable-pkgdatadir=%{_datadir}/aspell \
-	--enable-pkglibdir=%{_datadir}/aspell
+	--enable-pkglibdir=%{_libdir}/aspell
 
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_libdir}/aspell
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -135,7 +134,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/run-with-aspell
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %{_datadir}/aspell
-%dir %{_libdir}/aspell
+%{_libdir}/aspell
 %{_mandir}/man1/*
 
 %files devel
