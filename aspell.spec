@@ -1,41 +1,40 @@
-%define		ver	.33.7.1
-
-Summary:	Aspell is an Open Source spell checker
-Summary(pl):	Aspell jest kontrolerem pisowni
+Summary:	GNU Aspell is an Open Source spell checker
+Summary(pl):	GNU Aspell jest kontrolerem pisowni
 Name:		aspell
-Version:	0%{ver}
-Release:	12
+Version:	0.50.1
+Release:	1
 Epoch:		2
 License:	LGPL
 Group:		Applications/Text
-Vendor:		Kevin Atkinson <kevinatk@home.com>
-Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/aspell/%{name}-%{ver}.tar.gz
-Patch0:		ftp://ftp.sourceforge.net/pub/sourceforge/aspell/%{name}-.33-fix2.diff
-Patch1:		%{name}-noinstalled.patch
-Patch2:		%{name}-amfix.patch
-URL:		http://aspell.sourceforge.net/
+Vendor:		Kevin Atkinson <kevina@gnu.org>
+Source0:	ftp://ftp.gnu.org/gnu/aspell/%{name}-%{version}.tar.gz
+Patch0:		%{name}-libstdc++.patch
+URL:		http://aspell.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
-BuildRequires:	pspell-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libaspell10
+Obsoletes:	pspell
+Provides:	pspell = %{epoch}:%{version}-%{release}
 
 %description
-Aspell is an Open Source spell checker designed to eventually replace
-Ispell. Its main feature is that it does a much better job of coming
-up with possible suggestions than Ispell does. In fact recent tests
-shows that it even does better than Microsoft Word 97's spell checker
-in some cases. In addition it has both compile time and run time
-support for other non English languages. Aspell also doubles as a
-powerful C++ library with C and Perl interfaces in the works.
+GNU Aspell is a Free and Open Source spell checker designed to
+eventually replace Ispell. It can either be used as a library or as an
+independent spell checker. Its main feature is that it does a much
+better job of coming up with possible suggestions than just about any
+other spell checker out there for the English language, including
+Ispell and Microsoft Word. It also has many other technical
+enhancements over Ispell such as using shared memory for dictionaries
+and intelligently handling personal dictionaries when more than one
+Aspell process is open at once.
 
 %description -l pl
-Aspell jest kontrolerem pisowni zaprojektowanym tak, by móc zast±piæ
-ispella. Dodatkowo zawiera wsparcie dla innych jêzyków ni¿ angielski.
-Interfejs aspella napisany zosta³ w C++, a interfejsy w Perlu i C s±
-aktualnie rozwijane.
+GNU Aspell jest kontrolerem pisowni zaprojektowanym tak, by móc
+zast±piæ ispella. Dodatkowo zawiera wsparcie dla innych jêzyków ni¿
+angielski. Interfejs aspella napisany zosta³ w C++, a interfejsy w
+Perlu i C s± aktualnie rozwijane.
 
 %package devel
 Summary:	Header files for aspell development
@@ -43,12 +42,14 @@ Summary(pl):	Pliki nag³ówkowe dla programistów u¿ywaj±cych aspella
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
 Obsoletes:	libaspell10-devel
+Obsoletes:	pspell-devel
+Provides:	pspell-devel = %{epoch}:%{version}-%{release}
 
 %description devel
 Aspell is an Open Source spell checker. This package contains header
 files for aspell development.
 
-%description -l pl devel
+%description devel -l pl
 Aspell jest kontrolerem pisowni. Ten pakiet zawiera pliki nag³ówkowe
 dla programistów u¿ywaj±cych bibliotek aspella.
 
@@ -57,43 +58,31 @@ Summary:	Static libraries for aspell development
 Summary(pl):	Biblioteki statyczne aspella
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}
+Obsoletes:	pspell-static
+Provides:	pspell-static = %{epoch}:%{version}-%{release}
 
 %description static
 Aspell is an Open Source spell checker. This package contains static
 aspell libraries.
 
-%description -l pl static
+%description static -l pl
 Aspell jest kontrolerem pisowni. Pakiet ten zawiera biblioteki
 statyczne aspella.
 
-%package en
-Summary:	English dictionary for aspell
-Summary(pl):	Angielski s³ownik dla aspella
-Group:		Applications/Text
-Requires:	%{name} = %{version}
-
-%description en
-English dictionary (i.e. word list) for aspell.
-
-%description en -l pl
-Angielski s³ownik (lista s³ów) dla aspella.
-
 %prep
-%setup -q -n %{name}-%{ver}
-%patch0 -p0
-%patch1 -p1
-%patch2 -p1
+%setup -q
+%patch0 -p1
 
 %build
 %{__libtoolize}
-aclocal
+%{__aclocal}
 %{__autoconf}
 %{__automake}
 %configure \
 	--enable-shared \
 	--enable-static
 
-%{__make} 
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -101,7 +90,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -f $RPM_BUILD_ROOT{%{_bindir}/run-with-aspell,%{_datadir}/aspell/ispell}
+rm -f $RPM_BUILD_ROOT{%{_bindir}/run-with-aspell,%{_datadir}/aspell/{i,}spell}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -111,27 +100,23 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc manual/manual2.lyx manual/man-text/*.txt
-%attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_libdir}/libaspell.so.*.*
-%attr(755,root,root) %{_libdir}/libpspell_aspell.so.*.*
-%attr(755,root,root) %{_libdir}/libpspell_aspell.la
-%dir %{_libdir}/aspell
-%dir %{_datadir}/aspell
-%{_datadir}/aspell/[^e]*
+%doc README manual/man-html/*.{html,png,css}
+%attr(755,root,root) %{_bindir}/a*
+%attr(755,root,root) %{_bindir}/w*
+%attr(755,root,root) %{_libdir}/lib*.so.*
+%attr(755,root,root) %{_libdir}/lib*-common-*.so
+%{_datadir}/aspell
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libaspell.so
-%attr(755,root,root) %{_libdir}/libaspell.la
-%{_includedir}/aspell
+%doc manual/dev-html/*.{html,png,css}
+%attr(755,root,root) %{_bindir}/p*
+%attr(755,root,root) %{_libdir}/lib*.so
+%exclude %{_libdir}/lib*-common-*.so
+%attr(755,root,root) %{_libdir}/lib*.la
+%{_includedir}/pspell
+%{_includedir}/*.h
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libaspell.a
-
-%files en
-%defattr(644,root,root,755)
-%{_libdir}/aspell/*
-%{_datadir}/aspell/english*
-%{_datadir}/pspell/*
+%{_libdir}/lib*.a
