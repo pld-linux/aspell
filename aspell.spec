@@ -4,11 +4,12 @@ Name:		aspell
 Version:	.27.2
 Release:	3
 Serial:		1
-Copyright:	LGPL
+License:	LGPL
 Group:		Utilities/Text
+Group(fr):	Utilitaires/Texte
 Group(pl):	Narzêdzia/Tekst
 Vendor:		Kevin Atkinson <kevinatk@home.com>
-Source:		http://metalab.unc.edu/kevina/aspell/%{name}-%{version}.tar.gz
+Source0:	http://metalab.unc.edu/kevina/aspell/%{name}-%{version}.tar.gz
 URL:		http://metalab.unc.edu/kevina/aspell/
 BuildRequires:	libstdc++-devel
 Provides:	ispell
@@ -17,22 +18,24 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Aspell is an Open Source spell checker designed to eventually replace
-Ispell. Its main feature is that it does a much better job of coming up with
-possible suggestions than Ispell does. In fact recent tests shows that it
-even does better than Microsoft Word 97's spell checker in some cases. In
-addition it has both compile time and run time support for other non English
-languages. Aspell also doubles as a powerful C++ library with C and Perl
-interfaces in the works.
+Ispell. Its main feature is that it does a much better job of coming
+up with possible suggestions than Ispell does. In fact recent tests
+shows that it even does better than Microsoft Word 97's spell checker
+in some cases. In addition it has both compile time and run time
+support for other non English languages. Aspell also doubles as a
+powerful C++ library with C and Perl interfaces in the works.
 
 %description -l pl
-Aspell jest kontrolerem pisowni zaprojektowanym tak, by móc zast±piæ ispell'a.
-Dodatkowo zawiera wsparcie dla innych jêzyków ni¿ angielski. Interfejs
-aspella napisany zosta³ w C++, a interfejsy w Perlu i C s± aktualnie rozwijane.
+Aspell jest kontrolerem pisowni zaprojektowanym tak, by móc zast±piæ
+ispell'a. Dodatkowo zawiera wsparcie dla innych jêzyków ni¿ angielski.
+Interfejs aspella napisany zosta³ w C++, a interfejsy w Perlu i C s±
+aktualnie rozwijane.
 
 %package devel
 Summary:	Libraries and header files for aspell development
 Summary(pl):	Biblioteki i pliki nag³ówkowe dla developerów aspella
 Group:		Development/Libraries
+Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Serial:		%{serial}
 Requires:	%{name} = %{version}
@@ -43,13 +46,14 @@ Aspell is an Open Source spell checker.
 Libraries and header files for aspell development
 
 %description -l pl devel
-Aspell jest kontrolerem pisowni.
-Pakiet ten zawiera biblioteki i pliki nag³ówkowe dla developerów aspella.
+Aspell jest kontrolerem pisowni. Pakiet ten zawiera biblioteki i pliki
+nag³ówkowe dla developerów aspella.
 
 %package static
 Summary:	Static Libraries for aspell development
 Summary(pl):	Biblioteki statyczne dla developerów aspella
 Group:		Development/Libraries
+Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Serial:		%{serial}
 Requires:	%{name}-devel = %{version}
@@ -60,8 +64,8 @@ Aspell is an Open Source spell checker.
 Static Libraries for aspell development
 
 %description -l pl static
-Aspell jest kontrolerem pisowni.
-Pakiet ten zawiera biblioteki statyczne dla developerów aspella.
+Aspell jest kontrolerem pisowni. Pakiet ten zawiera biblioteki
+statyczne dla developerów aspella.
 
 %prep
 %setup -q
@@ -73,7 +77,7 @@ patch <misc/stl_rope-30.diff
 CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
 CXXFLAGS="$RPM_OPT_FLAGS" \
 ./configure %{_target_platform} \
-	--prefix=/usr \
+--prefix=%{_prefix} \
 	--libdir=%{_datadir} \
 	--enable-shared \
 	--enable-static
@@ -87,13 +91,13 @@ make install \
 	pkgdatadir=%{_datadir}/aspell \
 	libdir=%{_libdir}
 
-#cp -pr $RPM_BUILD_ROOT/usr/doc/aspell .
+#cp -pr $RPM_BUILD_ROOT%{_prefix}/doc/aspell .
 
 strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
 strip $RPM_BUILD_ROOT%{_bindir}/* || :
 
 ln -sf aspell $RPM_BUILD_ROOT%{_bindir}/ispell
-rm -rf $RPM_BUILD_ROOT/usr/{bin/run-with-aspell,share/aspell/ispell}
+rm -rf $RPM_BUILD_ROOT%{_prefix}/{bin/run-with-aspell,share/aspell/ispell}
 
 gzip -9nf manual/manual2.lyx manual/man-text/*.txt
 
