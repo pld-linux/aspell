@@ -1,0 +1,11 @@
+--- aspell-0.50.3/prog/checker_string.cpp.orig	Thu Sep 26 02:42:42 2002
++++ aspell-0.50.3/prog/checker_string.cpp	Thu Jun 12 13:42:39 2003
+@@ -10,6 +10,8 @@
+ #include "copy_ptr-t.hpp"
+ #include "asc_ctype.hpp"
+ 
++#include <cassert>
++
+ static int get_line(FILE * in, CharVector & d)
+ {
+   d.resize(0);
