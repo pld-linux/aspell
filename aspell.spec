@@ -2,18 +2,18 @@ Summary:	GNU Aspell is an Open Source spell checker
 Summary(pl):	GNU Aspell jest kontrolerem pisowni
 Summary(pt_BR):	Verificador ortográfico
 Name:		aspell
-Version:	0.60
-Release:	3
-Epoch:		2
+Version:	0.50.5
+Release:	0.1
+Epoch:		3
 License:	LGPL
 Group:		Applications/Text
 Vendor:		Kevin Atkinson <kevina@gnu.org>
 Source0:	ftp://ftp.gnu.org/gnu/aspell/%{name}-%{version}.tar.gz
-# Source0-md5:	8fa031d0eb37a5538aa6fefa657e707f
+# Source0-md5:	14403d2ea5ded5d3fc9bb259bf65aab5
 # Security patch from gentoo: http://www.gentoo.org/cgi-bin/viewcvs.cgi/app-text/aspell/files/aspell-buffer-fix.patch
 # ref.: http://securitytracker.com/alerts/2004/Jun/1010435.html
 Patch0:		%{name}-buffer-fix.patch
-Patch1:		%{name}-info.patch
+#Patch1:		%{name}-info.patch
 URL:		http://aspell.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -98,7 +98,7 @@ aspell.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
+#%%patch1 -p1
 
 %build
 %{__libtoolize}
@@ -119,7 +119,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%find_lang %{name}
+#%%find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -127,23 +127,19 @@ rm -rf $RPM_BUILD_ROOT
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
-%files -f %{name}.lang
+%files
 %defattr(644,root,root,755)
-%doc README manual/aspell.html
-%{_infodir}/aspell.info*
+%doc README manual/man-html/*.{html,png,css}
 %attr(755,root,root) %{_bindir}/aspell*
-%attr(755,root,root) %{_bindir}/pre*
 %attr(755,root,root) %{_bindir}/word-list-compress
 %attr(755,root,root) %{_bindir}/run-with-aspell
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %{_datadir}/aspell
-%{_libdir}/aspell
-%{_mandir}/man1/*
+%dir %{_datadir}/aspell
 
 %files devel
 %defattr(644,root,root,755)
-%doc manual/aspell-dev.html
-%{_infodir}/aspell-dev.info*
+%doc manual/dev-html/*.{html,png,css}
 %attr(755,root,root) %{_bindir}/pspell-config
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_libdir}/lib*.la
