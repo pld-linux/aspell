@@ -54,6 +54,7 @@ Summary(pt_BR):	Arquivos para desenvolvimento usando Aspell
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Provides:	pspell-devel = %{epoch}:%{version}-%{release}
+Requires:	libstdc++-devel
 Obsoletes:	libaspell15-devel
 Obsoletes:	pspell-devel
 
