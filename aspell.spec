@@ -2,7 +2,7 @@ Summary:	GNU Aspell is an Open Source spell checker
 Summary(pl):	GNU Aspell jest kontrolerem pisowni
 Name:		aspell
 Version:	0.50.3
-Release:	1
+Release:	1.1
 Epoch:		2
 License:	LGPL
 Group:		Applications/Text
@@ -13,6 +13,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:1.4e-0.20021218.3
+BuildRequires:	gettext-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libaspell10
 Obsoletes:	pspell
