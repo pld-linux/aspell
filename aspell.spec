@@ -15,7 +15,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
 BuildRequires:	libstdc++-devel
-BuildRequires:	libtool >= 2:1.4e-0.20021218.3
+BuildRequires:	libtool >= 2:1.5
 Provides:	pspell = %{epoch}:%{version}-%{release}
 Obsoletes:	libaspell15
 Obsoletes:	pspell
@@ -49,7 +49,7 @@ Summary:	Header files for aspell development
 Summary(pl):	Pliki nag³ówkowe dla programistów u¿ywaj±cych aspella
 Summary(pt_BR):	Arquivos para desenvolvimento usando Aspell
 Group:		Development/Libraries
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 Provides:	pspell-devel = %{epoch}:%{version}-%{release}
 Obsoletes:	libaspell15-devel
 Obsoletes:	pspell-devel
@@ -72,7 +72,7 @@ Summary:	Static libraries for aspell development
 Summary(pl):	Biblioteki statyczne aspella
 Summary(pt_BR):	Bibliotecas estáticas para desenvolvimento usando Aspell
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{epoch}:%{version}
+Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 Provides:	pspell-static = %{epoch}:%{version}-%{release}
 Obsoletes:	pspell-static
 
@@ -121,8 +121,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README manual/man-html/*.{html,png,css}
-%attr(755,root,root) %{_bindir}/a*
-%attr(755,root,root) %{_bindir}/w*
+%attr(755,root,root) %{_bindir}/aspell*
+%attr(755,root,root) %{_bindir}/word-list-compress
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %{_datadir}/aspell
 %dir %{_libdir}/aspell
@@ -130,7 +130,7 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %doc manual/dev-html/*.{html,png,css}
-%attr(755,root,root) %{_bindir}/p*
+%attr(755,root,root) %{_bindir}/pspell-config
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_libdir}/lib*.la
 %{_includedir}/pspell
