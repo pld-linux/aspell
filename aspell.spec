@@ -13,12 +13,14 @@ Source0:	ftp://ftp.gnu.org/gnu/aspell/%{name}-%{version}.tar.gz
 # Security patch from gentoo: http://www.gentoo.org/cgi-bin/viewcvs.cgi/app-text/aspell/files/aspell-buffer-fix.patch
 # ref.: http://securitytracker.com/alerts/2004/Jun/1010435.html
 Patch0:		%{name}-buffer-fix.patch
+Patch1:		%{name}-info.patch
 URL:		http://aspell.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:1.5
+BuildRequires:	texinfo
 Provides:	pspell = %{epoch}:%{version}-%{release}
 Obsoletes:	libaspell15
 Obsoletes:	pspell
@@ -96,6 +98,7 @@ aspell.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__libtoolize}
