@@ -1,0 +1,47 @@
+To apply this patch cd into the Aspell source directory and then
+  patch -p0 < <this file>
+
+It is meant to be applied against Aspell .33.7.*
+
+This patch will:
+- Workaround a bug in Pspell where multi-byte words are not getting
+  null terminated properly.
+- Truly fix a bug in suggest.cc so that Aspell will suggest correctly
+  when typo-analysis is not used such as when sug-mode is ultra 
+  or bad spellers.
+
+--- lib/suggest.cc~	Wed Aug  1 03:40:49 2001
++++ lib/suggest.cc	Fri Nov  9 00:10:16 2001
+@@ -455,7 +455,7 @@
+   void Working::score_list() {
+     if (near_misses.empty()) return;
+ 
+-    bool no_soundslike = strcmp(manager->lang().soundslike_name(), "none") != 0;
++    bool no_soundslike = strcmp(manager->lang().soundslike_name(), "none") == 0;
+ 
+     if (parms.use_typo_analysis) {
+       
+--- pspell-module/manager.cc~	Wed Jan 31 22:08:58 2001
++++ pspell-module/manager.cc	Sun Dec  9 22:51:14 2001
+@@ -59,7 +59,9 @@
+     if (w == 0) return 0;
+     temp_str = "";
+     from_internal->convert(w, temp_buf);
+-    return temp_str.c_str();
++    char t[4] = {0};
++    temp_str.append(t, 4);
++    return temp_str.data();
+   }
+ 
+   template <>
+@@ -70,7 +72,9 @@
+     wi.get_word(tmp,local_info.convert);
+     temp_str = "";
+     from_internal->convert(tmp.c_str(), temp_buf);
+-    return temp_str.c_str();
++    char t[4] = {0};
++    temp_str.append(t, 4);
++    return temp_str.data();
+   }
+ 
+   template <typename T>

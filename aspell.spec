@@ -4,14 +4,20 @@ Summary:	Aspell is an Open Source spell checker
 Summary(pl):	Aspell jest kontrolerem pisowni
 Name:		aspell
 Version:	0%{ver}
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL
 Group:		Applications/Text
 Vendor:		Kevin Atkinson <kevinatk@home.com>
-Source0:	http://metalab.unc.edu/kevina/aspell/%{name}-%{ver}.tar.gz
-URL:		http://metalab.unc.edu/kevina/aspell/
+Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/aspell/%{name}-%{ver}.tar.gz
+Patch0:		ftp://ftp.sourceforge.net/pub/sourceforge/aspell/%{name}-.33-fix2.diff
+Patch1:		%{name}-noinstalled.patch
+Patch2:		%{name}-amfix.patch
+URL:		http://aspell.sourceforge.net/
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	libstdc++-devel
+BuildRequires:	libtool
 BuildRequires:	pspell-devel
 Provides:	ispell
 Obsoletes:	ispell
@@ -28,84 +34,88 @@ powerful C++ library with C and Perl interfaces in the works.
 
 %description -l pl
 Aspell jest kontrolerem pisowni zaprojektowanym tak, by móc zast±piæ
-ispell'a. Dodatkowo zawiera wsparcie dla innych jêzyków ni¿ angielski.
+ispella. Dodatkowo zawiera wsparcie dla innych jêzyków ni¿ angielski.
 Interfejs aspella napisany zosta³ w C++, a interfejsy w Perlu i C s±
 aktualnie rozwijane.
 
 %package devel
-Summary:	Libraries and header files for aspell development
-Summary(pl):	Biblioteki i pliki nag³ówkowe dla developerów aspella
+Summary:	Header files for aspell development
+Summary(pl):	Pliki nag³ówkowe dla programistów u¿ywaj±cych aspella
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
 
 %description devel
-Aspell is an Open Source spell checker.
-
-Libraries and header files for aspell development.
+Aspell is an Open Source spell checker. This package contains header
+files for aspell development.
 
 %description -l pl devel
-Aspell jest kontrolerem pisowni. Pakiet ten zawiera biblioteki i pliki
-nag³ówkowe dla developerów aspella.
+Aspell jest kontrolerem pisowni. Ten pakiet zawiera pliki nag³ówkowe
+dla programistów u¿ywaj±cych bibliotek aspella.
 
 %package static
-Summary:	Static Libraries for aspell development
-Summary(pl):	Biblioteki statyczne dla developerów aspella
+Summary:	Static libraries for aspell development
+Summary(pl):	Biblioteki statyczne aspella
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}
 
 %description static
-Aspell is an Open Source spell checker.
-
-Static Libraries for aspell development.
+Aspell is an Open Source spell checker. This package contains static
+aspell libraries.
 
 %description -l pl static
 Aspell jest kontrolerem pisowni. Pakiet ten zawiera biblioteki
-statyczne dla developerów aspella.
+statyczne aspella.
 
 %prep
 %setup -q -n %{name}-%{ver}
+%patch0 -p0
+%patch1 -p1
+%patch2 -p1
 
 %build
-CFLAGS="%{rpmcflags}" CXXFLAGS="%{rpmcflags}" LDFLAGS="%{rpmldflags}" \
-%configure %{_target_platform} \
-	--libdir=%{_datadir} \
+libtoolize --copy --force
+aclocal
+autoconf
+automake -a -c -f --foreign
+%configure \
 	--enable-shared \
-	--enable-static
+	--enable-static \
+	--enable-dict-dir=%{_datadir}/aspell
+
 %{__make} 
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	pkgdatadir=%{_datadir}/aspell \
-	libdir=%{_libdir}
-
-#cp -pr $RPM_BUILD_ROOT%{_prefix}/doc/aspell .
+	DESTDIR=$RPM_BUILD_ROOT
 
 ln -sf aspell $RPM_BUILD_ROOT%{_bindir}/ispell
 rm -rf $RPM_BUILD_ROOT%{_prefix}/{bin/run-with-aspell,share/aspell/ispell}
 
 gzip -9nf manual/manual2.lyx manual/man-text/*.txt
 
-%post   -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post   -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
+
 %files
 %defattr(644,root,root,755)
-%doc README TODO manual/{*,man-text/*.txt}.gz
+%doc manual/{*,man-text/*.txt}.gz
 %attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_libdir}/libaspell.so.*.*
+%attr(755,root,root) %{_libdir}/libpspell_aspell.so.*.*
+%attr(755,root,root) %{_libdir}/libpspell_aspell.la
 %{_datadir}/aspell
-%{_libdir}/libaspell.so.*.*
+%{_datadir}/pspell/*
 
 %files	devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libaspell.so
+%attr(755,root,root) %{_libdir}/libaspell.la
 %{_includedir}/aspell
-%{_libdir}/libaspell.la
 
 %files static
 %defattr(644,root,root,755)

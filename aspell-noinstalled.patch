@@ -1,0 +1,61 @@
+--- aspell-.33.7.1/data/Makefile.am.orig	Wed May  2 01:34:28 2001
++++ aspell-.33.7.1/data/Makefile.am	Fri May  3 11:21:27 2002
+@@ -30,35 +30,35 @@
+ 	cat english-*.10 english-*.20 english-*.35 english-*.50 \
+             english-*.60 english-*.65 \
+ 	    special-*.35 special-*.50 \
+-	| $$bd/src/aspell --lang=english \
++	| $$bd/src/aspell --conf=/dev/null --per-conf=/dev/null --lang=english \
+ 	  create master $$bd/data/english-med-only
+ 
+ american-med-only:
+ 	cd ../; bd=`pwd`; cd scowl/final; \
+ 	cat american-*.10 american-*.20 american-*.35 american-*.50 \
+             american-*.60 american-*.65 \
+-	| $$bd/src/aspell --lang=english \
++	| $$bd/src/aspell --conf=/dev/null --per-conf=/dev/null --lang=english \
+ 	  create master $$bd/data/american-med-only
+ 
+ british-med-only:
+ 	cd ../; bd=`pwd`; cd scowl/final; \
+ 	cat british-*.10 british-*.20 british-*.35 british-*.50 \
+             british-*.60 british-*.65 \
+-	| $$bd/src/aspell --lang=english \
++	| $$bd/src/aspell --conf=/dev/null --per-conf=/dev/null --lang=english \
+ 	  create master $$bd/data/british-med-only
+ 
+ canadian-med-only:
+ 	cd ../; bd=`pwd`; cd scowl/final; \
+ 	cat canadian-*.10 canadian-*.20 canadian-*.35 canadian-*.50 \
+             canadian-*.60 canadian-*.65 \
+-	| $$bd/src/aspell --lang=english \
++	| $$bd/src/aspell --conf=/dev/null --per-conf=/dev/null --lang=english \
+ 	  create master $$bd/data/canadian-med-only
+ 
+ english-variant-0:
+ 	cd ../; bd=`pwd`; cd scowl/final; \
+ 	cat variant_0-*.10 variant_0-*.20 variant_0-*.35 variant_0-*.50 \
+ 	    variant_0-*.60 variant_0-*.65 \
+-	| $$bd/src/aspell --lang=english \
++	| $$bd/src/aspell --conf=/dev/null --per-conf=/dev/null --lang=english \
+ 	  create master $$bd/data/english-variant-0
+ 
+ english-variant-1:
+@@ -67,7 +67,7 @@
+ 	    variant_0-*.60                \
+ 	    variant_1-*.10 variant_1-*.20 variant_1-*.35 variant_1-*.50 \
+ 	    variant_1-*.60 variant_1-*.65 \
+-	| $$bd/src/aspell --lang=english \
++	| $$bd/src/aspell --conf=/dev/null --per-conf=/dev/null --lang=english \
+ 	  create master $$bd/data/english-variant-1
+ 
+ english-variant-2:
+@@ -78,7 +78,7 @@
+ 	    variant_1-*.60 variant_1-*.65 \
+ 	    variant_2-*.10 variant_2-*.20 variant_2-*.35 variant_2-*.50 \
+ 	    variant_2-*.60                \
+-	| $$bd/src/aspell --lang=english \
++	| $$bd/src/aspell --conf=/dev/null --per-conf=/dev/null --lang=english \
+ 	  create master $$bd/data/english-variant-2
+ 
+ en-aspell.pwli:

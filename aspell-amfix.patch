@@ -1,0 +1,42 @@
+diff -Nur aspell-.33.7.1.orig/data/Makefile.am aspell-.33.7.1/data/Makefile.am
+--- aspell-.33.7.1.orig/data/Makefile.am	Fri May  3 11:28:26 2002
++++ aspell-.33.7.1/data/Makefile.am	Fri May  3 11:29:18 2002
+@@ -23,7 +23,7 @@
+ 
+ pspelldata_DATA = $(pwlifiles)
+ 
+-CLEANFILES += $(dictfiles) $(pwlifiles)
++CLEANFILES = $(dictfiles) $(pwlifiles)
+ 
+ english-med-only:
+ 	cd ../; bd=`pwd`; cd scowl/final; \
+diff -Nur aspell-.33.7.1.orig/manual/Makefile.am aspell-.33.7.1/manual/Makefile.am
+--- aspell-.33.7.1.orig/manual/Makefile.am	Fri Jul 27 05:06:09 2001
++++ aspell-.33.7.1/manual/Makefile.am	Fri May  3 11:29:37 2002
+@@ -4,7 +4,7 @@
+ 
+ ## CLEANFILES += manual2.tex manual2.aux manual2.log
+ 
+-MAINTAINERCLEANFILES += manual.*  manual-html manual-text
++MAINTAINERCLEANFILES = manual.*  manual-html manual-text
+ 
+ manual: @MAINTAINER_MODE_TRUE@ manual-text
+ 
+diff -Nur aspell-.33.7.1.orig/manual/man-html/Makefile.am aspell-.33.7.1/manual/man-html/Makefile.am
+--- aspell-.33.7.1.orig/manual/man-html/Makefile.am	Mon Apr  3 04:11:50 2000
++++ aspell-.33.7.1/manual/man-html/Makefile.am	Fri May  3 11:29:51 2002
+@@ -8,4 +8,4 @@
+ *.css:
+ *.png:
+ 
+-MAINTAINERCLEANFILES += ${pkgdoc_html_DATA} *.pl WARNINGS
++MAINTAINERCLEANFILES = ${pkgdoc_html_DATA} *.pl WARNINGS
+diff -Nur aspell-.33.7.1.orig/manual/man-text/Makefile.am aspell-.33.7.1/manual/man-text/Makefile.am
+--- aspell-.33.7.1.orig/manual/man-text/Makefile.am	Wed Jan 19 22:53:07 2000
++++ aspell-.33.7.1/manual/man-text/Makefile.am	Fri May  3 11:29:57 2002
+@@ -6,4 +6,4 @@
+ 
+ *.txt:
+ 
+-MAINTAINERCLEANFILES += *.txt
++MAINTAINERCLEANFILES = *.txt
