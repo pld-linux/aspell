@@ -79,11 +79,10 @@ statyczne aspella.
 #%{__aclocal}
 #%{__autoconf}
 #%{__automake}
-cp -f ltmain.sh ltmain.sh.org
 %configure \
 	--enable-shared \
 	--enable-static
-cp -f ltmain.sh.org ltmain.sh
+
 %{__make}
 
 %install
