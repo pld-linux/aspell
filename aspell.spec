@@ -110,10 +110,11 @@ aspell.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_libdir}/aspell
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+%find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -121,18 +122,23 @@ rm -rf $RPM_BUILD_ROOT
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc README manual/man-html/*.{html,png,css}
+%doc README manual/aspell.html
+%{_infodir}/aspell.info*
 %attr(755,root,root) %{_bindir}/aspell*
+%attr(755,root,root) %{_bindir}/pre*
 %attr(755,root,root) %{_bindir}/word-list-compress
+%attr(755,root,root) %{_bindir}/run-with-aspell
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
-%{_datadir}/aspell
-%dir %{_libdir}/aspell
+#%{_datadir}/aspell
+%{_libdir}/%{name}-%{version}
+%{_mandir}/man1/*
 
 %files devel
 %defattr(644,root,root,755)
-%doc manual/dev-html/*.{html,png,css}
+%doc manual/aspell-dev.html
+%{_infodir}/aspell-dev.info*
 %attr(755,root,root) %{_bindir}/pspell-config
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_libdir}/lib*.la
