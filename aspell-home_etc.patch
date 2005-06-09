@@ -1,0 +1,11 @@
+--- aspell-0.50.5/common/config.cpp~	2005-06-08 08:04:27.000000000 +0200
++++ aspell-0.50.5/common/config.cpp	2005-06-08 08:05:17.000000000 +0200
+@@ -899,7 +899,7 @@
+ #  define PERSONAL "<actual-lang>.pws"
+ #  define REPL     "<actual-lang>.prepl"
+ #else
+-#  define HOME_DIR "<$HOME|./>"
++#  define HOME_DIR "<$HOME_ETC|$HOME|./>"
+ #  define PERSONAL ".aspell.<actual-lang>.pws"
+ #  define REPL     ".aspell.<actual-lang>.prepl"
+ #endif
