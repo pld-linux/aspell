@@ -1,11 +1,12 @@
---- aspell-0.50.5/common/config.cpp~	2005-06-08 08:04:27.000000000 +0200
-+++ aspell-0.50.5/common/config.cpp	2005-06-08 08:05:17.000000000 +0200
-@@ -899,7 +899,7 @@
- #  define PERSONAL "<actual-lang>.pws"
- #  define REPL     "<actual-lang>.prepl"
+diff -ruN aspell-0.60.2.orig/common/config.cpp aspell-0.60.2/common/config.cpp
+--- aspell-0.60.2.orig/common/config.cpp	2004-11-22 08:38:23.000000000 +0100
++++ aspell-0.60.2/common/config.cpp	2005-06-11 02:04:36.000000000 +0200
+@@ -1343,7 +1343,7 @@
+ #  define PERSONAL "<lang>.pws"
+ #  define REPL     "<lang>.prepl"
  #else
 -#  define HOME_DIR "<$HOME|./>"
 +#  define HOME_DIR "<$HOME_ETC|$HOME|./>"
- #  define PERSONAL ".aspell.<actual-lang>.pws"
- #  define REPL     ".aspell.<actual-lang>.prepl"
+ #  define PERSONAL ".aspell.<lang>.pws"
+ #  define REPL     ".aspell.<lang>.prepl"
  #endif
