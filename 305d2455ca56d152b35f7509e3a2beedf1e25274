@@ -1,0 +1,3 @@
+- dictionaries back to original location (%{_libdir}/aspell) - format
+  depends on machine endianess!
+- release 11
