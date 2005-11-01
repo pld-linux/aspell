@@ -1,0 +1,5 @@
+- resolved conflict with ispell, removed Provides/Obsoletes: ispell -
+  it's only CLI-compatible with ispell, not an ispell replacement
+- separated English dictionary to subpackage - not everyone needs it
+- new %doc
+- release 12
