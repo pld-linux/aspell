@@ -3,7 +3,7 @@ Summary(pl):	GNU Aspell jest kontrolerem pisowni
 Summary(pt_BR):	Verificador ortográfico
 Name:		aspell
 Version:	0.60.4
-Release:	1
+Release:	1.2
 Epoch:		3
 License:	LGPL
 Vendor:		Kevin Atkinson <kevina@gnu.org>
@@ -19,6 +19,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	texinfo
+Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 Provides:	pspell = %{epoch}:%{version}-%{release}
 Obsoletes:	libaspell15
 Obsoletes:	pspell
@@ -52,7 +53,7 @@ Summary:	Header files for aspell development
 Summary(pl):	Pliki nag³ówkowe dla programistów u¿ywaj±cych aspella
 Summary(pt_BR):	Arquivos para desenvolvimento usando Aspell
 Group:		Development/Libraries
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 Requires:	libstdc++-devel
 Provides:	pspell-devel = %{epoch}:%{version}-%{release}
 Obsoletes:	libaspell15-devel
@@ -70,6 +71,13 @@ dla programistów u¿ywaj±cych bibliotek aspella.
 Aspell é um corretor ortográfico. O pacote -devel inclui bibliotecas
 dinâmicas e arquivos de inclusão necessários para o desenvolvimento
 utilizando o aspell.
+
+%package libs
+Summary:	aspell libraries
+Group:		Libraries
+
+%description libs
+aspell/pspell libraries
 
 %package static
 Summary:	Static libraries for aspell development
@@ -122,8 +130,8 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p /sbin/ldconfig
-%postun	-p /sbin/ldconfig
+%post	libs -p /sbin/ldconfig
+%postun	libs -p /sbin/ldconfig
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
@@ -133,9 +141,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/pre*
 %attr(755,root,root) %{_bindir}/word-list-compress
 %attr(755,root,root) %{_bindir}/run-with-aspell
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
 %{_datadir}/aspell
-%{_libdir}/aspell
 %{_mandir}/man1/*
 
 %files devel
@@ -147,6 +153,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/lib*.la
 %{_includedir}/pspell
 %{_includedir}/*.h
+
+%files libs
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/lib*.so.*.*
+%{_libdir}/aspell
 
 %files static
 %defattr(644,root,root,755)
