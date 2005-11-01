@@ -48,6 +48,17 @@ antigo "ispell". Sua principal vantagem (sobre o Ispell) é uma melhor
 sugestão de correções. Aspell inclui suporte a vários idiomas e pode
 fazer a checagem de arquivos LaTeX e HTML.
 
+%package libs
+Summary:	aspell libraries
+Summary(pl):	Biblioteki aspella
+Group:		Libraries
+
+%description libs
+aspell/pspell libraries
+
+%description libs -l pl
+Biblioteki aspell/pspell.
+
 %package devel
 Summary:	Header files for aspell development
 Summary(pl):	Pliki nag³ówkowe dla programistów u¿ywaj±cych aspella
@@ -71,13 +82,6 @@ dla programistów u¿ywaj±cych bibliotek aspella.
 Aspell é um corretor ortográfico. O pacote -devel inclui bibliotecas
 dinâmicas e arquivos de inclusão necessários para o desenvolvimento
 utilizando o aspell.
-
-%package libs
-Summary:	aspell libraries
-Group:		Libraries
-
-%description libs
-aspell/pspell libraries
 
 %package static
 Summary:	Static libraries for aspell development
@@ -144,6 +148,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/aspell
 %{_mandir}/man1/*
 
+%files libs
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/lib*.so.*.*
+%{_libdir}/aspell
+
 %files devel
 %defattr(644,root,root,755)
 %doc manual/aspell-dev.html
@@ -153,11 +162,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/lib*.la
 %{_includedir}/pspell
 %{_includedir}/*.h
-
-%files libs
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
-%{_libdir}/aspell
 
 %files static
 %defattr(644,root,root,755)
