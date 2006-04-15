@@ -53,7 +53,7 @@ fazer a checagem de arquivos LaTeX e HTML.
 Summary:	aspell libraries
 Summary(pl):	Biblioteki aspella
 Group:		Libraries
-Conflicts:	%{name} < 0.60.4-1.2
+Conflicts:	aspell < 0.60.4-1.2
 
 %description libs
 aspell/pspell libraries
