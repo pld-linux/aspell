@@ -3,7 +3,7 @@ Summary(pl):	GNU Aspell jest kontrolerem pisowni
 Summary(pt_BR):	Verificador ortográfico
 Name:		aspell
 Version:	0.60.4
-Release:	2
+Release:	3
 Epoch:		3
 License:	LGPL
 Vendor:		Kevin Atkinson <kevina@gnu.org>
@@ -53,6 +53,7 @@ fazer a checagem de arquivos LaTeX e HTML.
 Summary:	aspell libraries
 Summary(pl):	Biblioteki aspella
 Group:		Libraries
+Conflicts:	%{name} < 0.60.4-1.2
 
 %description libs
 aspell/pspell libraries
