@@ -6,7 +6,6 @@ Version:	0.60.4
 Release:	3
 Epoch:		3
 License:	LGPL
-Vendor:		Kevin Atkinson <kevina@gnu.org>
 Group:		Applications/Text
 Source0:	ftp://ftp.gnu.org/gnu/aspell/%{name}-%{version}.tar.gz
 # Source0-md5:	4f1737e726d66476b9c7388831305510
@@ -132,6 +131,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+rm -f $RPM_BUILD_ROOT%{_datadir}/info/dir
 %find_lang %{name}
 
 %clean
