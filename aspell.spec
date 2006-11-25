@@ -113,6 +113,7 @@ aspell.
 %patch2 -p1
 
 %build
+%{__gettextize}
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
