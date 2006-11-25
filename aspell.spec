@@ -3,7 +3,7 @@ Summary(pl):	GNU Aspell jest kontrolerem pisowni
 Summary(pt_BR):	Verificador ortográfico
 Name:		aspell
 Version:	0.60.4
-Release:	4
+Release:	5
 Epoch:		3
 License:	LGPL
 Group:		Applications/Text
