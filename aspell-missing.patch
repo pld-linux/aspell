@@ -1,0 +1,21 @@
+--- aspell-0.60.5/manual/oo-only.texi.orig	1970-01-01 01:00:00.000000000 +0100
++++ aspell-0.60.5/manual/oo-only.texi	2006-12-28 21:50:15.049628000 +0100
+@@ -0,0 +1,18 @@
++@itemize
++@item Coptic (cop)
++@item Fijian (fj)
++@item Friulian (fur)
++@item Dyula (dyu)
++@item Fulah (ff)
++@item Mossi (mos)
++@item Nepali (ne)
++@item South Ndebele (nr)
++@item Northern Sotho (nso)
++@item Swati (ss)
++@item Southern Sotho (st)
++@item Tsonga (ts)
++@item Venda (ve)
++@item Xhosa (xh)
++@item Khmer (km)
++@item Luxembourgish (lb)
++@end itemize
