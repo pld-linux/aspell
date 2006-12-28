@@ -2,20 +2,20 @@ Summary:	GNU Aspell is an Open Source spell checker
 Summary(pl):	GNU Aspell jest kontrolerem pisowni
 Summary(pt_BR):	Verificador ortográfico
 Name:		aspell
-Version:	0.60.4
-Release:	5
+Version:	0.60.5
+Release:	1
 Epoch:		3
 License:	LGPL
 Group:		Applications/Text
 Source0:	ftp://ftp.gnu.org/gnu/aspell/%{name}-%{version}.tar.gz
-# Source0-md5:	4f1737e726d66476b9c7388831305510
+# Source0-md5:	17fd8acac6293336bcef44391b71e337
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-home_etc.patch
-Patch2:		%{name}-gcc4.patch
+Patch2:		%{name}-missing.patch
 URL:		http://aspell.net/
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-devel >= 0.16.1
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	texinfo
@@ -145,28 +145,38 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README manual/aspell.html
 %{_infodir}/aspell.info*
-%attr(755,root,root) %{_bindir}/aspell*
+%attr(755,root,root) %{_bindir}/aspell
+%attr(755,root,root) %{_bindir}/aspell-import
 %attr(755,root,root) %{_bindir}/pre*
-%attr(755,root,root) %{_bindir}/word-list-compress
 %attr(755,root,root) %{_bindir}/run-with-aspell
+%attr(755,root,root) %{_bindir}/word-list-compress
 %{_datadir}/aspell
-%{_mandir}/man1/*
+%{_mandir}/man1/aspell.1*
+%{_mandir}/man1/aspell-import.1*
+%{_mandir}/man1/pre*.1*
+%{_mandir}/man1/run-with-aspell.1*
+%{_mandir}/man1/word-list-compress.1*
 
 %files libs
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
+%attr(755,root,root) %{_libdir}/libaspell.so.*.*.*
+%attr(755,root,root) %{_libdir}/libpspell.so.*.*.*
 %{_libdir}/aspell
 
 %files devel
 %defattr(644,root,root,755)
 %doc manual/aspell-dev.html
-%{_infodir}/aspell-dev.info*
 %attr(755,root,root) %{_bindir}/pspell-config
-%attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/lib*.la
+%attr(755,root,root) %{_libdir}/libaspell.so
+%attr(755,root,root) %{_libdir}/libpspell.so
+%{_libdir}/libaspell.la
+%{_libdir}/libpspell.la
 %{_includedir}/pspell
-%{_includedir}/*.h
+%{_includedir}/aspell.h
+%{_mandir}/man1/pspell-config.1*
+%{_infodir}/aspell-dev.info*
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libaspell.a
+%{_libdir}/libpspell.a
