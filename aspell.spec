@@ -1,6 +1,6 @@
 Summary:	GNU Aspell is an Open Source spell checker
-Summary(pl):	GNU Aspell jest kontrolerem pisowni
-Summary(pt_BR):	Verificador ortográfico
+Summary(pl.UTF-8):   GNU Aspell jest kontrolerem pisowni
+Summary(pt_BR.UTF-8):   Verificador ortogrÃ¡fico
 Name:		aspell
 Version:	0.60.5
 Release:	1
@@ -36,34 +36,34 @@ enhancements over Ispell such as using shared memory for dictionaries
 and intelligently handling personal dictionaries when more than one
 Aspell process is open at once.
 
-%description -l pl
-GNU Aspell jest kontrolerem pisowni zaprojektowanym tak, by móc
-zast±piæ ispella. Dodatkowo zawiera wsparcie dla innych jêzyków ni¿
-angielski. Interfejs aspella napisany zosta³ w C++, a interfejsy w
-Perlu i C s± aktualnie rozwijane.
+%description -l pl.UTF-8
+GNU Aspell jest kontrolerem pisowni zaprojektowanym tak, by mÃ³c
+zastÄ…piÄ‡ ispella. Dodatkowo zawiera wsparcie dla innych jÄ™zykÃ³w niÅ¼
+angielski. Interfejs aspella napisany zostaÅ‚ w C++, a interfejsy w
+Perlu i C sÄ… aktualnie rozwijane.
 
-%description -l pt_BR
-GNU Aspell é um verificador ortográfico criado para substituir o
-antigo "ispell". Sua principal vantagem (sobre o Ispell) é uma melhor
-sugestão de correções. Aspell inclui suporte a vários idiomas e pode
+%description -l pt_BR.UTF-8
+GNU Aspell Ã© um verificador ortogrÃ¡fico criado para substituir o
+antigo "ispell". Sua principal vantagem (sobre o Ispell) Ã© uma melhor
+sugestÃ£o de correÃ§Ãµes. Aspell inclui suporte a vÃ¡rios idiomas e pode
 fazer a checagem de arquivos LaTeX e HTML.
 
 %package libs
 Summary:	aspell libraries
-Summary(pl):	Biblioteki aspella
+Summary(pl.UTF-8):   Biblioteki aspella
 Group:		Libraries
 Conflicts:	aspell < 0.60.4-1.2
 
 %description libs
 aspell/pspell libraries
 
-%description libs -l pl
+%description libs -l pl.UTF-8
 Biblioteki aspell/pspell.
 
 %package devel
 Summary:	Header files for aspell development
-Summary(pl):	Pliki nag³ówkowe dla programistów u¿ywaj±cych aspella
-Summary(pt_BR):	Arquivos para desenvolvimento usando Aspell
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe dla programistÃ³w uÅ¼ywajÄ…cych aspella
+Summary(pt_BR.UTF-8):   Arquivos para desenvolvimento usando Aspell
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 Requires:	libstdc++-devel
@@ -75,19 +75,19 @@ Obsoletes:	pspell-devel
 Aspell is an Open Source spell checker. This package contains header
 files for aspell development.
 
-%description devel -l pl
-Aspell jest kontrolerem pisowni. Ten pakiet zawiera pliki nag³ówkowe
-dla programistów u¿ywaj±cych bibliotek aspella.
+%description devel -l pl.UTF-8
+Aspell jest kontrolerem pisowni. Ten pakiet zawiera pliki nagÅ‚Ã³wkowe
+dla programistÃ³w uÅ¼ywajÄ…cych bibliotek aspella.
 
-%description devel -l pt_BR
-Aspell é um corretor ortográfico. O pacote -devel inclui bibliotecas
-dinâmicas e arquivos de inclusão necessários para o desenvolvimento
+%description devel -l pt_BR.UTF-8
+Aspell Ã© um corretor ortogrÃ¡fico. O pacote -devel inclui bibliotecas
+dinÃ¢micas e arquivos de inclusÃ£o necessÃ¡rios para o desenvolvimento
 utilizando o aspell.
 
 %package static
 Summary:	Static libraries for aspell development
-Summary(pl):	Biblioteki statyczne aspella
-Summary(pt_BR):	Bibliotecas estáticas para desenvolvimento usando Aspell
+Summary(pl.UTF-8):   Biblioteki statyczne aspella
+Summary(pt_BR.UTF-8):   Bibliotecas estÃ¡ticas para desenvolvimento usando Aspell
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 Provides:	pspell-static = %{epoch}:%{version}-%{release}
@@ -97,13 +97,13 @@ Obsoletes:	pspell-static
 Aspell is an Open Source spell checker. This package contains static
 aspell libraries.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Aspell jest kontrolerem pisowni. Pakiet ten zawiera biblioteki
 statyczne aspella.
 
-%description static -l pt_BR
-Aspell é um corretor ortográfico. O pacote -devel-static inclui as
-bibliotecas estáticas necessárias para o desenvolvimento utilizando o
+%description static -l pt_BR.UTF-8
+Aspell Ã© um corretor ortogrÃ¡fico. O pacote -devel-static inclui as
+bibliotecas estÃ¡ticas necessÃ¡rias para o desenvolvimento utilizando o
 aspell.
 
 %prep
