@@ -1,6 +1,6 @@
 Summary:	GNU Aspell is an Open Source spell checker
-Summary(pl.UTF-8):   GNU Aspell jest kontrolerem pisowni
-Summary(pt_BR.UTF-8):   Verificador ortográfico
+Summary(pl.UTF-8):	GNU Aspell jest kontrolerem pisowni
+Summary(pt_BR.UTF-8):	Verificador ortográfico
 Name:		aspell
 Version:	0.60.5
 Release:	1
@@ -50,7 +50,7 @@ fazer a checagem de arquivos LaTeX e HTML.
 
 %package libs
 Summary:	aspell libraries
-Summary(pl.UTF-8):   Biblioteki aspella
+Summary(pl.UTF-8):	Biblioteki aspella
 Group:		Libraries
 Conflicts:	aspell < 0.60.4-1.2
 
@@ -62,8 +62,8 @@ Biblioteki aspell/pspell.
 
 %package devel
 Summary:	Header files for aspell development
-Summary(pl.UTF-8):   Pliki nagłówkowe dla programistów używających aspella
-Summary(pt_BR.UTF-8):   Arquivos para desenvolvimento usando Aspell
+Summary(pl.UTF-8):	Pliki nagłówkowe dla programistów używających aspella
+Summary(pt_BR.UTF-8):	Arquivos para desenvolvimento usando Aspell
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 Requires:	libstdc++-devel
@@ -86,8 +86,8 @@ utilizando o aspell.
 
 %package static
 Summary:	Static libraries for aspell development
-Summary(pl.UTF-8):   Biblioteki statyczne aspella
-Summary(pt_BR.UTF-8):   Bibliotecas estáticas para desenvolvimento usando Aspell
+Summary(pl.UTF-8):	Biblioteki statyczne aspella
+Summary(pt_BR.UTF-8):	Bibliotecas estáticas para desenvolvimento usando Aspell
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 Provides:	pspell-static = %{epoch}:%{version}-%{release}
