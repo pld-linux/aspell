@@ -7,7 +7,7 @@ Release:	1
 Epoch:		3
 License:	LGPL
 Group:		Applications/Text
-Source0:	ftp://ftp.gnu.org/gnu/aspell/%{name}-%{version}.tar.gz
+Source0:	http://ftp.gnu.org/gnu/aspell/%{name}-%{version}.tar.gz
 # Source0-md5:	17fd8acac6293336bcef44391b71e337
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-home_etc.patch
