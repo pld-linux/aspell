@@ -3,7 +3,7 @@ Summary(pl.UTF-8):	GNU Aspell jest kontrolerem pisowni
 Summary(pt_BR.UTF-8):	Verificador ortográfico
 Name:		aspell
 Version:	0.60.5
-Release:	1
+Release:	2
 Epoch:		3
 License:	LGPL
 Group:		Applications/Text
@@ -150,7 +150,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/pre*
 %attr(755,root,root) %{_bindir}/run-with-aspell
 %attr(755,root,root) %{_bindir}/word-list-compress
-%{_datadir}/aspell
+%dir %{_datadir}/aspell
+%attr(755,root,root) %{_datadir}/aspell/ispell
+%attr(755,root,root) %{_datadir}/aspell/spell
+%{_datadir}/aspell/*.cmap
+%{_datadir}/aspell/*.cset
+%{_datadir}/aspell/*.kbd
 %{_mandir}/man1/aspell.1*
 %{_mandir}/man1/aspell-import.1*
 %{_mandir}/man1/pre*.1*
@@ -160,7 +165,9 @@ rm -rf $RPM_BUILD_ROOT
 %files libs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libaspell.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libaspell.so.15
 %attr(755,root,root) %{_libdir}/libpspell.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libpspell.so.15
 %{_libdir}/aspell
 
 %files devel
