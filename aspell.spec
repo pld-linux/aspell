@@ -3,7 +3,7 @@ Summary(pl.UTF-8):	GNU Aspell jest kontrolerem pisowni
 Summary(pt_BR.UTF-8):	Verificador ortográfico
 Name:		aspell
 Version:	0.60.6
-Release:	1
+Release:	2
 Epoch:		3
 License:	LGPL v2 or v2.1
 Group:		Applications/Text
@@ -11,6 +11,7 @@ Source0:	http://ftp.gnu.org/gnu/aspell/%{name}-%{version}.tar.gz
 # Source0-md5:	bc80f0198773d5c05086522be67334eb
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-home_etc.patch
+Patch2:		%{name}-mk-static-filter.pl.patch
 URL:		http://aspell.net/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
@@ -109,6 +110,7 @@ aspell.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p0
 
 %build
 %{__gettextize}
