@@ -3,14 +3,14 @@ Summary(pl.UTF-8):	GNU Aspell jest kontrolerem pisowni
 Summary(pt_BR.UTF-8):	Verificador ortográfico
 Name:		aspell
 Version:	0.60.6
-Release:	3
+Release:	4
 Epoch:		3
 License:	LGPL v2 or v2.1
 Group:		Applications/Text
 Source0:	http://ftp.gnu.org/gnu/aspell/%{name}-%{version}.tar.gz
 # Source0-md5:	bc80f0198773d5c05086522be67334eb
 Patch0:		%{name}-info.patch
-Patch1:		%{name}-home_etc.patch
+# Patch1:		%{name}-home_etc.patch
 Patch2:		%{name}-mk-static-filter.pl.patch
 URL:		http://aspell.net/
 BuildRequires:	autoconf >= 2.50
@@ -109,7 +109,11 @@ aspell.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
+# home_etc patch is fubar. If HOME_ETC var is not defined, it tries to open
+# such files:
+# open("$HOME|.//.aspell.conf", O_RDONLY) = -1 ENOENT (No such file or directory)
+# Disabled until someone fixes it.
+#%%patch1 -p1
 %patch2 -p0
 
 %build
