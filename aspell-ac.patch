@@ -9,7 +9,7 @@
        AC_TRY_LINK(
          [#include <ncursesw/curses.h>], [initscr()],
 -        [CURSES_LIB=-lncursesw
-+        [CURSES_LIB=-lncursesw -ltinfow
++        [CURSES_LIB="-lncursesw -ltinfow"
           AC_DEFINE(CURSES_HEADER, <ncursesw/curses.h>, [Defined to curses header file])])
      fi
  
