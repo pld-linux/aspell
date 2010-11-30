@@ -1,0 +1,15 @@
+--- aspell-0.60.6/configure.ac~	2008-04-07 05:50:05.000000000 +0200
++++ aspell-0.60.6/configure.ac	2010-11-30 11:36:09.000000000 +0100
+@@ -343,10 +343,10 @@
+ 
+     if test "$enable_wide_curses" != "no" -a -n "$have_mblen"
+     then
+-      LIBS="-lncursesw $ORIG_LIBS"
++      LIBS="-lncursesw -tinfow $ORIG_LIBS"
+       AC_TRY_LINK(
+         [#include <ncursesw/curses.h>], [initscr()],
+-        [CURSES_LIB=-lncursesw
++        [CURSES_LIB=-lncursesw -tinfow
+          AC_DEFINE(CURSES_HEADER, <ncursesw/curses.h>, [Defined to curses header file])])
+     fi
+ 
