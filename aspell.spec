@@ -3,7 +3,7 @@ Summary(pl.UTF-8):	GNU Aspell jest kontrolerem pisowni
 Summary(pt_BR.UTF-8):	Verificador ortográfico
 Name:		aspell
 Version:	0.60.6
-Release:	5
+Release:	6
 Epoch:		3
 License:	LGPL v2 or v2.1
 Group:		Applications/Text
@@ -17,9 +17,9 @@ URL:		http://aspell.net/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
 BuildRequires:	gettext-devel >= 0.16.1
-BuildRequires:	ncurses-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:1.5
+BuildRequires:	ncurses-devel
 BuildRequires:	texinfo
 Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 Provides:	pspell = %{epoch}:%{version}-%{release}
@@ -147,6 +147,18 @@ rm -rf $RPM_BUILD_ROOT
 
 %post	libs -p /sbin/ldconfig
 %postun	libs -p /sbin/ldconfig
+
+%post	-p /sbin/postshell
+-/usr/sbin/fix-info-dir -c %{_infodir}
+
+%postun	-p /sbin/postshell
+-/usr/sbin/fix-info-dir -c %{_infodir}
+
+%post	devel -p /sbin/postshell
+-/usr/sbin/fix-info-dir -c %{_infodir}
+
+%postun	devel -p /sbin/postshell
+-/usr/sbin/fix-info-dir -c %{_infodir}
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
