@@ -2,17 +2,16 @@ Summary:	GNU Aspell is an Open Source spell checker
 Summary(pl.UTF-8):	GNU Aspell jest kontrolerem pisowni
 Summary(pt_BR.UTF-8):	Verificador ortográfico
 Name:		aspell
-Version:	0.60.6
-Release:	6
+Version:	0.60.6.1
+Release:	1
 Epoch:		3
 License:	LGPL v2 or v2.1
 Group:		Applications/Text
 Source0:	http://ftp.gnu.org/gnu/aspell/%{name}-%{version}.tar.gz
-# Source0-md5:	bc80f0198773d5c05086522be67334eb
+# Source0-md5:	e66a9c9af6a60dc46134fdacf6ce97d7
 Patch0:		%{name}-info.patch
-# Patch1:		%{name}-home_etc.patch
-Patch2:		%{name}-mk-static-filter.pl.patch
-Patch3:		%{name}-ac.patch
+Patch1:		%{name}-ac.patch
+#Patch2:		%{name}-home_etc.patch
 URL:		http://aspell.net/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
@@ -111,13 +110,12 @@ aspell.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 # home_etc patch is fubar. If HOME_ETC var is not defined, it tries to open
 # such files:
 # open("$HOME|.//.aspell.conf", O_RDONLY) = -1 ENOENT (No such file or directory)
 # Disabled until someone fixes it.
-#%%patch1 -p1
-%patch2 -p0
-%patch3 -p1
+#%%patch2 -p1
 
 %build
 %{__gettextize}
@@ -126,7 +124,6 @@ aspell.
 %{__autoconf}
 %{__automake}
 %configure \
-	--enable-shared \
 	--enable-static \
 	--enable-pkgdatadir=%{_datadir}/aspell \
 	--enable-pkglibdir=%{_libdir}/aspell

@@ -1,6 +1,6 @@
---- aspell-0.60.6/configure.ac~	2008-04-07 05:50:05.000000000 +0200
-+++ aspell-0.60.6/configure.ac	2010-11-30 11:36:09.000000000 +0100
-@@ -343,10 +343,10 @@
+--- aspell-0.60.6.1/configure.ac.orig	2011-07-04 10:58:29.000000000 +0200
++++ aspell-0.60.6.1/configure.ac	2011-07-14 18:01:22.971002230 +0200
+@@ -344,20 +344,20 @@
  
      if test "$enable_wide_curses" != "no" -a -n "$have_mblen"
      then
@@ -10,6 +10,18 @@
          [#include <ncursesw/curses.h>], [initscr()],
 -        [CURSES_LIB=-lncursesw
 +        [CURSES_LIB="-lncursesw -ltinfow"
-          AC_DEFINE(CURSES_HEADER, <ncursesw/curses.h>, [Defined to curses header file])])
+          AC_DEFINE(CURSES_HEADER, <ncursesw/curses.h>, [Defined to curses header file])
+          AC_DEFINE(TERM_HEADER, <ncursesw/term.h>, [Defined to term header file])])
      fi
  
+     if test -z "$CURSES_LIB"
+     then
+-      LIBS="-lncurses $ORIG_LIBS"
++      LIBS="-lncurses -ltinfo $ORIG_LIBS"
+       AC_TRY_LINK(
+         [#include <ncurses/curses.h>], [initscr()],
+-        [CURSES_LIB=-lncurses
++        [CURSES_LIB="-lncurses -ltinfo"
+          AC_DEFINE(CURSES_HEADER, <ncurses/curses.h>, [Defined to curses header file])
+          AC_DEFINE(TERM_HEADER, <ncurses/term.h>, [Defined to term header file])],
+         [
