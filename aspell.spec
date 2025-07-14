@@ -109,8 +109,8 @@ aspell.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
+%patch -P0 -p1
+%patch -P1 -p1
 # home_etc patch is fubar. If HOME_ETC var is not defined, it tries to open
 # such files:
 # open("$HOME|.//.aspell.conf", O_RDONLY) = -1 ENOENT (No such file or directory)
