@@ -2,13 +2,13 @@ Summary:	GNU Aspell is an Open Source spell checker
 Summary(pl.UTF-8):	GNU Aspell jest kontrolerem pisowni
 Summary(pt_BR.UTF-8):	Verificador ortográfico
 Name:		aspell
-Version:	0.60.8.1
+Version:	0.60.8.2
 Release:	1
 Epoch:		3
 License:	LGPL v2 or v2.1
 Group:		Applications/Text
 Source0:	https://ftp.gnu.org/gnu/aspell/%{name}-%{version}.tar.gz
-# Source0-md5:	187bd142f522ada555c7aa6b9cbf56e6
+# Source0-md5:	bc3f30321db5d44f112ab66084421225
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-ac.patch
 #Patch2:		%{name}-home_etc.patch
@@ -163,7 +163,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_infodir}/aspell.info*
 %attr(755,root,root) %{_bindir}/aspell
 %attr(755,root,root) %{_bindir}/aspell-import
-%attr(755,root,root) %{_bindir}/pre*
+%attr(755,root,root) %{_bindir}/precat
+%attr(755,root,root) %{_bindir}/preunzip
+%attr(755,root,root) %{_bindir}/prezip
+%attr(755,root,root) %{_bindir}/prezip-bin
 %attr(755,root,root) %{_bindir}/run-with-aspell
 %attr(755,root,root) %{_bindir}/word-list-compress
 %dir %{_datadir}/aspell
@@ -174,24 +177,24 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/aspell/*.kbd
 %{_mandir}/man1/aspell.1*
 %{_mandir}/man1/aspell-import.1*
-%{_mandir}/man1/pre*.1*
+%{_mandir}/man1/prezip-bin.1*
 %{_mandir}/man1/run-with-aspell.1*
 %{_mandir}/man1/word-list-compress.1*
 
 %files libs
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libaspell.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libaspell.so.15
-%attr(755,root,root) %{_libdir}/libpspell.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libpspell.so.15
+%{_libdir}/libaspell.so.*.*.*
+%ghost %{_libdir}/libaspell.so.15
+%{_libdir}/libpspell.so.*.*.*
+%ghost %{_libdir}/libpspell.so.15
 %{_libdir}/aspell
 
 %files devel
 %defattr(644,root,root,755)
 %doc manual/aspell-dev.html
 %attr(755,root,root) %{_bindir}/pspell-config
-%attr(755,root,root) %{_libdir}/libaspell.so
-%attr(755,root,root) %{_libdir}/libpspell.so
+%{_libdir}/libaspell.so
+%{_libdir}/libpspell.so
 %{_libdir}/libaspell.la
 %{_libdir}/libpspell.la
 %{_includedir}/pspell
