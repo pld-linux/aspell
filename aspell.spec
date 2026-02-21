@@ -4,7 +4,7 @@ Summary(pt_BR.UTF-8):	Verificador ortográfico
 Name:		aspell
 Version:	0.60.8.2
 Release:	1
-Epoch:		3
+Epoch:		4
 License:	LGPL v2 or v2.1
 Group:		Applications/Text
 Source0:	https://ftp.gnu.org/gnu/aspell/%{name}-%{version}.tar.gz
@@ -126,7 +126,7 @@ aspell.
 %configure \
 	--enable-static \
 	--enable-pkgdatadir=%{_datadir}/aspell \
-	--enable-pkglibdir=%{_libdir}/aspell
+	--enable-pkglibdir=%{_prefix}/lib/aspell
 
 %{__make}
 
@@ -172,6 +172,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/aspell
 %attr(755,root,root) %{_datadir}/aspell/ispell
 %attr(755,root,root) %{_datadir}/aspell/spell
+%dir %{_prefix}/lib/aspell
 %{_datadir}/aspell/*.cmap
 %{_datadir}/aspell/*.cset
 %{_datadir}/aspell/*.kbd
