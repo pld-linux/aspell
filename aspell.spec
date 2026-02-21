@@ -3,8 +3,8 @@ Summary(pl.UTF-8):	GNU Aspell jest kontrolerem pisowni
 Summary(pt_BR.UTF-8):	Verificador ortográfico
 Name:		aspell
 Version:	0.60.8.2
-Release:	1
-Epoch:		4
+Release:	2
+Epoch:		3
 License:	LGPL v2 or v2.1
 Group:		Applications/Text
 Source0:	https://ftp.gnu.org/gnu/aspell/%{name}-%{version}.tar.gz
@@ -49,11 +49,24 @@ antigo "ispell". Sua principal vantagem (sobre o Ispell) é uma melhor
 sugestão de correções. Aspell inclui suporte a vários idiomas e pode
 fazer a checagem de arquivos LaTeX e HTML.
 
+%package dicts
+Summary:	Base dictionary data for aspell
+Summary(pl.UTF-8):	Podstawowe dane do słowników aspella
+Group:		Libraries
+BuildArch:	noarch
+
+%description dicts
+Base dictionary data for aspell.
+
+%description dicts -l pl.UTF-8
+Podstawowe dane do słowników aspella.
+
 %package libs
 Summary:	aspell libraries
 Summary(pl.UTF-8):	Biblioteki aspella
 Group:		Libraries
 Conflicts:	aspell < 0.60.4-1.2
+Requires:	%{name}-dicts = %{epoch}:%{version}-%{release}
 
 %description libs
 aspell/pspell libraries
@@ -172,7 +185,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/aspell
 %attr(755,root,root) %{_datadir}/aspell/ispell
 %attr(755,root,root) %{_datadir}/aspell/spell
-%dir %{_prefix}/lib/aspell
 %{_datadir}/aspell/*.cmap
 %{_datadir}/aspell/*.cset
 %{_datadir}/aspell/*.kbd
@@ -182,13 +194,16 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/run-with-aspell.1*
 %{_mandir}/man1/word-list-compress.1*
 
+%files dicts
+%defattr(644,root,root,755)
+%{_prefix}/lib/aspell
+
 %files libs
 %defattr(644,root,root,755)
 %{_libdir}/libaspell.so.*.*.*
 %ghost %{_libdir}/libaspell.so.15
 %{_libdir}/libpspell.so.*.*.*
 %ghost %{_libdir}/libpspell.so.15
-%{_libdir}/aspell
 
 %files devel
 %defattr(644,root,root,755)
